@@ -2602,8 +2602,10 @@ body.deck-portrait .v2-section { display: none; }
 body.deck-portrait .v2-owner { margin-bottom: 0; }
 body.deck-portrait .v2-title,
 body.deck-portrait .v2-cover .v2-title {
-  font-size: 1.92em;
+  font-size: 1.62em;
+  line-height: 1.02;
   max-width: 100%;
+  overflow-wrap: anywhere;
 }
 body.deck-portrait .v2-grid,
 body.deck-portrait .v2-grid.two,
@@ -3038,6 +3040,517 @@ body.deck-portrait .v2-table tr {
   box-shadow: none;
 }
 
+/* ========= V2 interactive instruments ========= */
+.reveal section:has(#persona-switch) .v2-table,
+.reveal section:has(#heat-svg) .v2-grid.four,
+.reveal section:has(#heat-svg) .v2-caption,
+.reveal section:has(#action-list) .v2-flow,
+.reveal section:has(#lever-filter) .v2-grid.five {
+  display: none;
+}
+
+.v2-persona-lab,
+.v2-heat-lab,
+.v2-action-lab,
+.v2-lever-lab {
+  flex: 1;
+  min-height: 0;
+}
+
+.v2-persona-lab {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 22px;
+}
+
+.v2-persona-lab .p-switch,
+.v2-action-lab .prio-switch {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.v2-persona-lab .p-btn,
+.v2-action-lab .prio-btn,
+.v2-lever-lab .persona-filter button {
+  border-radius: 10px;
+  border: 1px solid rgba(0, 58, 112, .16);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(244,248,252,.86));
+  box-shadow: 0 10px 24px rgba(0, 21, 46, .055);
+  overflow: hidden;
+}
+
+.v2-persona-lab .p-btn {
+  padding: 15px 16px 14px 18px;
+}
+
+.v2-persona-lab .p-btn::before {
+  width: 4px;
+  background: rgba(0, 58, 112, .18);
+}
+
+.v2-persona-lab .p-btn.active,
+.v2-action-lab .prio-btn.active,
+.v2-lever-lab .persona-filter button.active {
+  background:
+    linear-gradient(135deg, var(--lne-blue), #00569b 72%, var(--lne-red));
+  border-color: rgba(0, 58, 112, .3);
+  color: #fff;
+  box-shadow: 0 16px 34px rgba(0, 58, 112, .18);
+}
+
+.v2-persona-lab .p-btn.active .pn,
+.v2-persona-lab .p-btn.active .ps {
+  color: #fff;
+}
+
+.v2-radar-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 18px;
+  min-height: 0;
+  padding: 18px;
+  border: 1px solid rgba(0, 58, 112, .14);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 32% 42%, rgba(0, 58, 112, .08), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(245,248,252,.9));
+  box-shadow: var(--v2-shadow);
+}
+
+.v2-radar-stage::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(0, 58, 112, .07);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.v2-radar-stage canvas {
+  width: 100%;
+  max-height: 360px;
+  align-self: center;
+}
+
+.v2-radar-stage .radar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.v2-radar-stage .info-card {
+  border: 1px solid rgba(0, 58, 112, .14);
+  border-radius: 10px;
+  background: rgba(255,255,255,.82);
+  padding: 16px;
+  box-shadow: none;
+}
+
+.v2-radar-stage .il {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: var(--lne-red);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.v2-radar-stage .iv {
+  color: var(--lne-blue);
+  font-size: .92em;
+  line-height: 1.22;
+  margin-top: 8px;
+}
+
+.v2-heat-lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) 320px;
+  gap: 20px;
+}
+
+.v2-heat-board {
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 58, 112, .14);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,248,252,.9));
+  box-shadow: var(--v2-shadow);
+  overflow: hidden;
+}
+
+.v2-heat-board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(0,58,112,.04));
+  pointer-events: none;
+}
+
+.v2-heat-board #heat-svg {
+  width: 100%;
+  height: 435px;
+  display: block;
+}
+
+.v2-heat-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.v2-mini-card p {
+  color: var(--ink-soft);
+  font-size: .76em;
+  line-height: 1.25;
+  margin: 0 0 12px 0;
+}
+
+.v2-heat-side .heat-scale {
+  gap: 4px;
+}
+
+.v2-heat-side .heat-scale .sw {
+  border-radius: 6px;
+  height: 32px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.32);
+}
+
+.v2-heat-side .heat-info {
+  min-height: 0;
+  flex: 1;
+  border: 1px solid rgba(0, 58, 112, .14);
+  border-radius: 12px;
+  border-top: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,243,245,.55));
+  box-shadow: var(--v2-shadow-soft);
+}
+
+.v2-heat-side .heat-info::before {
+  content: "";
+  display: block;
+  height: 3px;
+  margin: -24px -28px 20px;
+  background: linear-gradient(90deg, var(--lne-red), var(--lne-blue));
+}
+
+.v2-action-lab {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 22px;
+}
+
+.v2-action-lab .prio-btn {
+  padding: 18px 18px;
+}
+
+.v2-action-lab .prio-btn::after {
+  display: none;
+}
+
+.v2-action-lab .ptag {
+  display: block;
+  font-size: 1.72em;
+}
+
+.v2-action-lab .pt2 {
+  display: block;
+}
+
+.v2-action-lab .act-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.v2-action-lab .act-item {
+  position: relative;
+  grid-template-columns: 58px 1fr;
+  gap: 16px;
+  align-items: start;
+  min-height: 150px;
+  border: 1px solid rgba(0, 58, 112, .14);
+  border-radius: 12px;
+  border-left: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,248,252,.9));
+  box-shadow: var(--v2-shadow-soft);
+  overflow: hidden;
+}
+
+.v2-action-lab .act-item::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--lne-red), var(--lne-blue));
+}
+
+.v2-action-lab .act-item .icn {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: rgba(0, 58, 112, .22);
+  font-size: 3em;
+  font-style: normal;
+}
+
+.v2-action-lab .act-item h4 {
+  font-size: 1.18em;
+  letter-spacing: 0;
+}
+
+.v2-action-lab .act-item p {
+  font-family: 'Barlow', sans-serif;
+  font-style: normal;
+  font-size: .78em;
+  line-height: 1.28;
+}
+
+.v2-action-lab .act-item .src {
+  font-size: .62em;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+}
+
+.v2-lever-lab {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.v2-lever-lab .persona-filter {
+  margin: 0;
+}
+
+.v2-lever-lab .persona-filter button {
+  padding: 10px 14px;
+}
+
+.v2-lever-lab .levers {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+}
+
+.v2-lever-lab .lever {
+  position: relative;
+  min-height: 270px;
+  border: 1px solid rgba(0, 58, 112, .14);
+  border-top: 0;
+  border-radius: 12px;
+  padding: 20px 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,248,252,.92));
+  box-shadow: var(--v2-shadow-soft);
+  overflow: hidden;
+  transition: transform .28s ease, opacity .28s ease, filter .28s ease;
+}
+
+.v2-lever-lab .lever::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--lne-red), var(--lne-blue));
+}
+
+.v2-lever-lab .lever.dim {
+  opacity: .25;
+  filter: grayscale(.65);
+  transform: scale(.975);
+}
+
+.v2-lever-lab .lever .lett {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 4.5em;
+  font-weight: 900;
+  line-height: .78;
+  color: rgba(0, 58, 112, .12);
+}
+
+.v2-lever-lab .lever h3 {
+  font-size: 1.34em;
+  margin: 14px 0 8px;
+}
+
+.v2-lever-lab .lever p {
+  color: var(--ink-soft);
+  font-size: .76em;
+  line-height: 1.24;
+  margin: 0;
+}
+
+.v2-lever-lab .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 18px;
+}
+
+.v2-lever-lab .tags span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--lne-blue);
+  border: 1px solid rgba(0, 58, 112, .16);
+  border-radius: 5px;
+  padding: 4px 6px;
+  background: rgba(255,255,255,.7);
+}
+
+.reveal section.present .v2-card,
+.reveal section.present .v2-step,
+.reveal section.present .v2-heat-board,
+.reveal section.present .v2-radar-stage,
+.reveal section.present .v2-action-lab .act-item,
+.reveal section.present .v2-lever-lab .lever {
+  animation: v2Rise .55s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.reveal section.present .v2-card:nth-child(2),
+.reveal section.present .v2-step:nth-child(2),
+.reveal section.present .v2-lever-lab .lever:nth-child(2) { animation-delay: .05s; }
+.reveal section.present .v2-card:nth-child(3),
+.reveal section.present .v2-step:nth-child(3),
+.reveal section.present .v2-lever-lab .lever:nth-child(3) { animation-delay: .1s; }
+.reveal section.present .v2-card:nth-child(4),
+.reveal section.present .v2-lever-lab .lever:nth-child(4) { animation-delay: .15s; }
+.reveal section.present .v2-lever-lab .lever:nth-child(5) { animation-delay: .2s; }
+
+@keyframes v2Rise {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+body.deck-compact .v2-heat-board #heat-svg {
+  height: 360px;
+}
+
+body.deck-compact .v2-lever-lab .lever {
+  min-height: 220px;
+}
+
+body.deck-portrait .v2-persona-lab,
+body.deck-portrait .v2-heat-lab,
+body.deck-portrait .v2-action-lab {
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+body.deck-portrait .v2-persona-lab .p-switch,
+body.deck-portrait .v2-action-lab .prio-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+body.deck-portrait .v2-persona-lab .p-btn,
+body.deck-portrait .v2-action-lab .prio-btn {
+  padding: 10px 11px;
+}
+
+body.deck-portrait .v2-radar-stage {
+  grid-template-columns: 1fr;
+  padding: 10px;
+  overflow: hidden;
+}
+
+body.deck-portrait .v2-radar-stage canvas {
+  max-height: 210px;
+}
+
+body.deck-portrait .v2-radar-stage .radar-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+body.deck-portrait .v2-heat-lab {
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+body.deck-portrait .v2-heat-board {
+  width: 300px;
+  max-width: 100%;
+  justify-self: start;
+}
+
+body.deck-portrait .v2-heat-board #heat-svg {
+  height: 360px;
+}
+
+body.deck-portrait .v2-heat-side {
+  display: none;
+}
+
+body.deck-portrait .v2-action-lab .act-list {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+body.deck-portrait .v2-action-lab .act-item {
+  min-height: 0;
+  grid-template-columns: 44px 1fr;
+  padding: 14px;
+}
+
+body.deck-portrait .v2-action-lab .act-item .icn {
+  font-size: 2em;
+}
+
+body.deck-portrait .v2-lever-lab {
+  gap: 8px;
+}
+
+body.deck-portrait .v2-lever-lab .persona-filter {
+  gap: 5px;
+}
+
+body.deck-portrait .v2-lever-lab .persona-filter button {
+  padding: 7px 9px;
+  font-size: .66em;
+}
+
+body.deck-portrait .v2-lever-lab .levers {
+  grid-template-columns: 1fr;
+  gap: 7px;
+  flex: 0 0 auto;
+}
+
+body.deck-portrait .v2-lever-lab .lever {
+  min-height: 58px;
+  height: auto;
+  padding: 10px 12px;
+}
+
+body.deck-portrait .v2-lever-lab .lever .lett {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  font-size: 2.3em;
+}
+
+body.deck-portrait .v2-lever-lab .lever h3 {
+  margin: 4px 0 2px;
+  font-size: 1.05em;
+}
+
+body.deck-portrait .v2-lever-lab .tags {
+  display: none;
+}
+
+body.deck-portrait .v2-lever-lab .lever p {
+  display: block;
+  font-size: .64em;
+  max-width: 220px;
+}
+
 </style>
 </head>
 <body>
@@ -3261,6 +3774,27 @@ body.deck-portrait .v2-table tr {
         <div class="v2-kicker">Parcours d'achat B2B</div>
         <h2 class="v2-title">3 cibles. 3 questions. 3 canaux.</h2>
       </div>
+      <div class="v2-persona-lab">
+        <div class="p-switch" id="persona-switch" aria-label="Choisir un persona">
+          <button class="p-btn active" data-p="0"><span class="pn">Metrologue</span><span class="ps">5,6 / 10</span></button>
+          <button class="p-btn" data-p="1"><span class="pn">RH Formation</span><span class="ps">2,4 / 10</span></button>
+          <button class="p-btn" data-p="2"><span class="pn">RH Client</span><span class="ps">2,0 / 10</span></button>
+          <button class="p-btn" data-p="3"><span class="pn">Direction</span><span class="ps">2,4 / 10</span></button>
+        </div>
+        <div class="v2-radar-stage">
+          <canvas id="radar-canvas"></canvas>
+          <div class="radar-info">
+            <div class="info-card">
+              <div class="il">Question</div>
+              <div class="iv" id="radar-question">Budget ?</div>
+            </div>
+            <div class="info-card">
+              <div class="il">Verdict</div>
+              <div class="iv" id="radar-verdict">Cliquez un profil.</div>
+            </div>
+          </div>
+        </div>
+      </div>
       <table class="v2-table">
         <thead>
           <tr><th>Cible</th><th>Question</th><th>Canaux prioritaires</th></tr>
@@ -3290,6 +3824,31 @@ body.deck-portrait .v2-table tr {
         <div class="v2-kicker">Audit digital</div>
         <h2 class="v2-title">Lisibilite sous le seuil.</h2>
       </div>
+      <div class="v2-heat-lab">
+        <div class="v2-heat-board">
+          <svg id="heat-svg" aria-label="Heatmap d'audit LNE"></svg>
+        </div>
+        <div class="v2-heat-side">
+          <div class="v2-card v2-mini-card">
+            <span class="v2-label">6 pages x 5 criteres</span>
+            <h3>Rouge dominant</h3>
+            <p>Survolez ou cliquez une cellule pour lire le diagnostic.</p>
+            <div class="heat-scale" aria-label="Echelle de score">
+              <div class="sw" style="background:#c8312f;">1</div>
+              <div class="sw" style="background:#e8722d;">2</div>
+              <div class="sw" style="background:#f3b62f;">3</div>
+              <div class="sw" style="background:#8cb33d;">4</div>
+              <div class="sw" style="background:#1c8a5b;">5</div>
+            </div>
+          </div>
+          <div class="heat-info" id="heat-info">
+            <div class="pg">Cellule</div>
+            <div class="cr">Critere</div>
+            <div class="score">-</div>
+            <div class="note">Detail au clic.</div>
+          </div>
+        </div>
+      </div>
       <div class="v2-grid four">
         <div class="v2-card v2-kpi-card"><strong>31/100</strong><span>score lisibilite</span></div>
         <div class="v2-card v2-kpi-card"><strong>78 %</strong><span>jargon non traduit</span></div>
@@ -3315,6 +3874,14 @@ body.deck-portrait .v2-table tr {
       <div>
         <div class="v2-kicker">UX & conversion</div>
         <h2 class="v2-title">6 actions. 3 priorites.</h2>
+      </div>
+      <div class="v2-action-lab">
+        <div class="prio-switch" id="prio-switch" aria-label="Choisir une priorite">
+          <button class="prio-btn active" data-prio="1"><span class="ptag">P1</span><span class="pt2">0 - 3 mois</span></button>
+          <button class="prio-btn" data-prio="2"><span class="ptag">P2</span><span class="pt2">3 - 6 mois</span></button>
+          <button class="prio-btn" data-prio="3"><span class="ptag">P3</span><span class="pt2">6 - 12 mois</span></button>
+        </div>
+        <div class="act-list" id="action-list"></div>
       </div>
       <div class="v2-flow">
         <div class="v2-step">
@@ -3417,6 +3984,46 @@ body.deck-portrait .v2-table tr {
       <div>
         <div class="v2-kicker">Mix digital</div>
         <h2 class="v2-title">5 leviers coordonnes.</h2>
+      </div>
+      <div class="v2-lever-lab">
+        <div class="persona-filter" id="lever-filter" aria-label="Filtrer les leviers par cible">
+          <button class="active" data-target="all">Toutes cibles</button>
+          <button data-target="acheteur">Acheteur</button>
+          <button data-target="prescripteur">Prescripteur</button>
+          <button data-target="utilisateur">Utilisateur</button>
+        </div>
+        <div class="levers" id="levers-grid">
+          <div class="lever" data-tags="acheteur,prescripteur,utilisateur">
+            <div class="lett">A</div>
+            <h3>Site</h3>
+            <p>Secteurs · persona · clair.</p>
+            <div class="tags"><span>Acheteur</span><span>Presc.</span><span>Utilis.</span></div>
+          </div>
+          <div class="lever" data-tags="prescripteur,utilisateur">
+            <div class="lett">B</div>
+            <h3>SEO & SEA</h3>
+            <p>Requetes longues · niche.</p>
+            <div class="tags"><span>Presc.</span><span>Utilis.</span></div>
+          </div>
+          <div class="lever" data-tags="acheteur,prescripteur">
+            <div class="lett">C</div>
+            <h3>Content</h3>
+            <p>Veille · cas · webinars.</p>
+            <div class="tags"><span>Acheteur</span><span>Presc.</span></div>
+          </div>
+          <div class="lever" data-tags="acheteur,prescripteur">
+            <div class="lett">D</div>
+            <h3>LinkedIn</h3>
+            <p>Showcase · experts.</p>
+            <div class="tags"><span>Acheteur</span><span>Presc.</span></div>
+          </div>
+          <div class="lever" data-tags="acheteur">
+            <div class="lett">E</div>
+            <h3>Email</h3>
+            <p>Base clients · ROI.</p>
+            <div class="tags"><span>Acheteur</span></div>
+          </div>
+        </div>
       </div>
       <div class="v2-grid five">
         <div class="v2-card"><span class="v2-label">Site</span><h3>Hub</h3><ul class="v2-list"><li>persona</li><li>secteur</li></ul></div>
@@ -4967,12 +5574,15 @@ function drawHeat() {
   svg.selectAll("*").remove();
   const node = document.getElementById("heat-svg");
   if (!node) return;
-  const W = node.clientWidth, H = 500;
+  const W = node.clientWidth;
+  const compactHeat = W < 520;
+  const H = compactHeat ? 360 : 500;
   svg.attr("viewBox", `0 0 ${W} ${H}`);
 
-  const leftPad = 175, topPad = 70;
-  const cellW = (W - leftPad - 20) / heatCriteria.length;
-  const cellH = (H - topPad - 20) / heatPages.length;
+  const leftPad = compactHeat ? 92 : 175;
+  const topPad = compactHeat ? 48 : 70;
+  const cellW = (W - leftPad - (compactHeat ? 8 : 20)) / heatCriteria.length;
+  const cellH = (H - topPad - (compactHeat ? 8 : 20)) / heatPages.length;
 
   svg.selectAll(".colhdr")
     .data(heatCriteria)
@@ -4982,20 +5592,20 @@ function drawHeat() {
     .attr("text-anchor","middle")
     .attr("font-family","Barlow Condensed, sans-serif")
     .attr("font-weight",700)
-    .attr("font-size", 12)
-    .attr("letter-spacing", "0.2em")
+    .attr("font-size", compactHeat ? 7 : 12)
+    .attr("letter-spacing", compactHeat ? "0.08em" : "0.2em")
     .attr("fill","#475569")
     .text(d => d.short.toUpperCase());
 
   svg.selectAll(".rowhdr")
     .data(heatPages)
     .enter().append("text")
-    .attr("x", leftPad - 14)
-    .attr("y", (d,i) => topPad + i*cellH + cellH/2 + 5)
+    .attr("x", leftPad - (compactHeat ? 6 : 14))
+    .attr("y", (d,i) => topPad + i*cellH + cellH/2 + (compactHeat ? 3 : 5))
     .attr("text-anchor","end")
     .attr("font-family","Barlow Condensed, sans-serif")
     .attr("font-weight",600)
-    .attr("font-size", 14)
+    .attr("font-size", compactHeat ? 8 : 14)
     .attr("fill","#003A70")
     .text(d => d.short);
 
@@ -5006,10 +5616,10 @@ function drawHeat() {
     .data(cells)
     .enter().append("rect")
     .attr("class","cell")
-    .attr("x", d => leftPad + d.j*cellW + 3)
-    .attr("y", d => topPad + d.i*cellH + 3)
-    .attr("width", cellW - 6)
-    .attr("height", cellH - 6)
+    .attr("x", d => leftPad + d.j*cellW + (compactHeat ? 2 : 3))
+    .attr("y", d => topPad + d.i*cellH + (compactHeat ? 2 : 3))
+    .attr("width", cellW - (compactHeat ? 4 : 6))
+    .attr("height", cellH - (compactHeat ? 4 : 6))
     .attr("fill", d => heatColor(d.v))
     .attr("opacity", 0.96)
     .style("cursor","pointer")
@@ -5020,11 +5630,11 @@ function drawHeat() {
     .data(cells)
     .enter().append("text")
     .attr("x", d => leftPad + d.j*cellW + cellW/2)
-    .attr("y", d => topPad + d.i*cellH + cellH/2 + 8)
+    .attr("y", d => topPad + d.i*cellH + cellH/2 + (compactHeat ? 5 : 8))
     .attr("text-anchor","middle")
     .attr("font-family","Barlow Condensed, sans-serif")
     .attr("font-weight",800)
-    .attr("font-size", 22)
+    .attr("font-size", compactHeat ? 15 : 22)
     .attr("fill","#fff")
     .attr("opacity", 0.98)
     .text(d => d.v);
@@ -5183,9 +5793,15 @@ function onSlideChange() {
   startParticlesOnCurrent();
   animateCounters();
   if (state === "wordcloud-state") drawWC();
-  if (state === "heatmap-state") drawHeat();
-  if (state === "personas-state") drawRadar(0);
-  if (state === "actions-state") renderActions(1);
+  if (state === "heatmap-state" || cur.querySelector("#heat-svg")) drawHeat();
+  if (state === "personas-state" || cur.querySelector("#radar-canvas")) {
+    const activePersona = cur.querySelector("#persona-switch .p-btn.active");
+    drawRadar(activePersona ? parseInt(activePersona.dataset.p, 10) : 0);
+  }
+  if (state === "actions-state" || cur.querySelector("#action-list")) {
+    const activePrio = cur.querySelector("#prio-switch .prio-btn.active");
+    renderActions(activePrio ? parseInt(activePrio.dataset.prio, 10) : 1);
+  }
 }
 deck.on('ready', onSlideChange);
 deck.on('slidechanged', onSlideChange);
