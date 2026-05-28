@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LNE Academy — Projet collectif MC2 G1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+
+<style>
+:root {
+  --lne-blue: #003A70;
+  --lne-blue-light: #1a5490;
+  --lne-blue-dark: #002550;
+  --lne-red: #E6192D;
+  --lne-white: #FFFFFF;
+  --lne-grey: #F4F6F8;
+  --lne-grey-mid: #B8C2CC;
+  --lne-grey-dark: #4A5560;
+  --lne-text: #1a2332;
+}
+
+.reveal {
+  font-family: 'Barlow', sans-serif;
+  font-size: 26px;
+  color: var(--lne-text);
+  font-weight: 400;
+}
+.reveal .slides { text-align: left; }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--lne-blue);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 .4em 0;
+}
+.reveal h1 { font-size: 3.2em; }
+.reveal h2 { font-size: 2.2em; }
+.reveal h3 { font-size: 1.4em; color: var(--lne-blue); }
+.reveal h4 { font-size: 1.05em; color: var(--lne-grey-dark); text-transform: uppercase; letter-spacing: .08em; font-weight: 600;}
+.reveal p, .reveal li { line-height: 1.45; }
+.reveal strong { color: var(--lne-blue); font-weight: 600; }
+.reveal em.red { color: var(--lne-red); font-style: normal; font-weight: 600; }
+.reveal a { color: var(--lne-red); text-decoration: none; }
+
+.reveal section {
+  padding: 50px 70px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* ===== Header marker on every slide ===== */
+.slide-marker {
+  position: absolute;
+  top: 28px;
+  left: 70px;
+  right: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--lne-grey-dark);
+  font-weight: 600;
+}
+.slide-marker .left { display: flex; gap: 16px; align-items: center; }
+.slide-marker .brand { color: var(--lne-blue); font-weight: 800; letter-spacing: .14em;}
+.slide-marker .brand::before {
+  content: "";
+  display: inline-block;
+  width: 28px; height: 3px;
+  background: var(--lne-red);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.slide-marker .right { color: var(--lne-grey-mid); font-weight: 500;}
+
+/* ===== Cover slide ===== */
+.cover {
+  background: var(--lne-blue);
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 70px !important;
+}
+.cover h1 { color: white; font-size: 4.5em; line-height: .95; margin: 0;}
+.cover h1 .accent { color: var(--lne-red); display: block; font-weight: 900;}
+.cover .meta { color: rgba(255,255,255,.7); font-family: 'Barlow Condensed', sans-serif; font-size: 1.2em; letter-spacing: .1em; text-transform: uppercase;}
+.cover .team {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.cover .team .person {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cover .team .name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3em; color: white;}
+.cover .team .role { font-size: .8em; color: rgba(255,255,255,.6); margin-top: 2px;}
+.cover .topbrand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cover .topbrand .logo {
+  background: white;
+  color: var(--lne-blue);
+  font-weight: 900;
+  padding: 4px 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3em;
+  letter-spacing: .04em;
+}
+.cover .topbrand .logo .bar { color: var(--lne-red); }
+.cover .topbrand .academy { font-family: 'Barlow Condensed', sans-serif; font-weight: 400; letter-spacing: .2em; font-size: .95em; color: rgba(255,255,255,.85); text-transform: uppercase;}
+.cover .footer-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255,255,255,.2);
+  padding-top: 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.5);
+  font-size: .85em;
+}
+
+/* ===== Section divider ===== */
+.divider {
+  background: var(--lne-blue);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px !important;
+}
+.divider .part-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1em;
+  letter-spacing: .25em;
+  color: var(--lne-red);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.divider h1 { color: white; font-size: 4em; max-width: 75%; }
+.divider .speaker {
+  margin-top: 30px;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: rgba(255,255,255,.75);
+  font-size: .95em;
+}
+.divider .speaker span { color: white; font-weight: 700; }
+
+/* ===== Big number ===== */
+.bignum {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  color: var(--lne-blue);
+  line-height: 1;
+}
+.bignum-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+.bignum-card {
+  background: var(--lne-grey);
+  border-left: 4px solid var(--lne-red);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bignum-card .num { font-size: 3.2em; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--lne-blue); line-height: 1; }
+.bignum-card .label { font-size: .75em; color: var(--lne-grey-dark); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+
+/* ===== Quote card ===== */
+.quote-card {
+  background: var(--lne-blue);
+  color: white;
+  padding: 38px 42px;
+  border-left: 6px solid var(--lne-red);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.6em;
+  font-weight: 600;
+  line-height: 1.2;
+  position: relative;
+}
+.quote-card .cite { display: block; font-family: 'Barlow', sans-serif; font-size: .55em; opacity: .7; margin-top: 14px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em;}
+
+/* ===== Pillars / cards row ===== */
+.cards {
+  display: grid;
+  gap: 16px;
+}
+.cards.cols-2 { grid-template-columns: 1fr 1fr; }
+.cards.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cards.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cards.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.card {
+  background: white;
+  border: 1px solid var(--lne-grey);
+  border-top: 4px solid var(--lne-blue);
+  padding: 20px;
+  font-size: .82em;
+}
+.card .num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--lne-red);
+}
+.card h4 { margin: 4px 0 10px 0; color: var(--lne-blue); font-size: .95em; }
+.card p { margin: 0; color: var(--lne-grey-dark); font-size: .92em; line-height: 1.4;}
+
+/* ===== SWOT ===== */
+.swot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+  height: 480px;
+}
+.swot-cell {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all .2s ease;
+  position: relative;
+}
+.swot-cell:hover {
+  border-color: var(--lne-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,58,112,.12);
+}
+.swot-cell .tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.swot-cell.s .tag, .swot-cell.s .num { color: #1c8a5b; }
+.swot-cell.w .tag, .swot-cell.w .num { color: var(--lne-red); }
+.swot-cell.o .tag, .swot-cell.o .num { color: var(--lne-blue); }
+.swot-cell.t .tag, .swot-cell.t .num { color: #b35900; }
+.swot-cell .num {
+  position: absolute;
+  top: 12px; right: 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 2.4em;
+  opacity: .15;
+}
+.swot-cell ul {
+  margin: 0; padding-left: 18px;
+  font-size: .78em;
+  color: var(--lne-grey-dark);
+  line-height: 1.4;
+}
+.swot-cell li { margin-bottom: 4px; }
+.swot-cell li strong { color: var(--lne-blue); font-weight: 600;}
+
+/* ===== Benchmark families ===== */
+.bench-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+.bench-fam {
+  border-top: 4px solid var(--lne-blue);
+  background: white;
+  padding: 18px 20px;
+  font-size: .82em;
+}
+.bench-fam.public { border-top-color: var(--lne-blue); }
+.bench-fam.private { border-top-color: var(--lne-red); }
+.bench-fam.norm { border-top-color: #b35900; }
+.bench-fam h4 { margin-top: 0; font-size: 1em; }
+.bench-fam .sub { color: var(--lne-grey-dark); font-size: .85em; margin-bottom: 12px; font-style: italic;}
+.bench-fam ul { padding-left: 18px; margin: 0; }
+.bench-fam li { margin-bottom: 5px; line-height: 1.35;}
+.bench-fam li strong { color: var(--lne-blue); }
+
+/* ===== Standard de marché : checklist 6 dims ===== */
+.standard-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+.std-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--lne-grey);
+  padding: 14px 20px;
+  border-left: 4px solid var(--lne-red);
+}
+.std-row .check {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--lne-red);
+  color: white;
+  font-weight: 700;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.4em;
+  flex-shrink: 0;
+}
+.std-row .txt { font-size: .9em; }
+.std-row .txt strong { color: var(--lne-blue); display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1em;}
+.std-row .txt span { color: var(--lne-grey-dark); font-size: .85em;}
+
+/* ===== Insights ===== */
+.insights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+.insight {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  padding: 22px 26px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.insight .ribbon {
+  position: absolute;
+  top: 0; left: 0;
+  background: var(--lne-red);
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  padding: 4px 14px;
+  font-size: .8em;
+  letter-spacing: .1em;
+}
+.insight h4 {
+  margin-top: 26px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3em;
+  color: var(--lne-blue);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.insight p { font-size: .82em; color: var(--lne-grey-dark); margin: 0; line-height: 1.4;}
+
+/* ===== STP layout ===== */
+.stp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 16px;
+}
+.stp-block { background: var(--lne-grey); padding: 22px 26px; }
+.stp-block h4 { color: var(--lne-blue); font-family: 'Barlow Condensed', sans-serif; font-size: 1.4em; text-transform: none; letter-spacing: 0; margin-bottom: 12px;}
+.tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;}
+.tag-list .pill {
+  background: white;
+  color: var(--lne-blue);
+  border: 1px solid var(--lne-blue);
+  padding: 4px 10px;
+  font-size: .75em;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+}
+.tag-list .pill.red { border-color: var(--lne-red); color: var(--lne-red); }
+
+/* ===== Triptyque buying journey ===== */
+.tripty {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+}
+.tripty-card {
+  background: white;
+  border-top: 4px solid var(--lne-blue);
+  padding: 20px;
+  font-size: .85em;
+}
+.tripty-card:nth-child(2) { border-top-color: var(--lne-red); }
+.tripty-card h4 { color: var(--lne-blue); font-family: 'Barlow Condensed', sans-serif; text-transform: none; letter-spacing: 0; font-size: 1.2em; margin-bottom: 6px;}
+.tripty-card .role { font-size: .75em; color: var(--lne-grey-dark); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;}
+.tripty-card ul { padding-left: 16px; margin: 0; }
+.tripty-card li { margin-bottom: 4px; line-height: 1.35; }
+
+/* ===== Methodo blocks ===== */
+.methodo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+  margin-top: 16px;
+}
+.methodo {
+  background: var(--lne-blue);
+  color: white;
+  padding: 22px 24px;
+  position: relative;
+}
+.methodo .num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 3em;
+  font-weight: 800;
+  color: var(--lne-red);
+  line-height: 1;
+}
+.methodo h4 { color: white; font-family: 'Barlow Condensed', sans-serif; text-transform: none; letter-spacing: 0; margin: 8px 0 10px 0; font-size: 1.2em;}
+.methodo p { font-size: .8em; color: rgba(255,255,255,.85); margin: 0; line-height: 1.4;}
+.methodo .src { display: block; font-size: .7em; color: rgba(255,255,255,.55); margin-top: 12px; font-style: italic;}
+
+/* ===== Heatmap interactive ===== */
+.heatmap-wrap {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  margin-top: 14px;
+  align-items: start;
+}
+#heatmap-svg { width: 100%; height: auto; max-height: 460px; }
+.heat-legend {
+  background: var(--lne-grey);
+  padding: 20px;
+  font-size: .82em;
+}
+.heat-legend h4 { margin-top: 0; color: var(--lne-blue); font-size: 1em;}
+.heat-scale {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 14px 0;
+}
+.heat-scale .sw {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  color: white;
+  font-size: .9em;
+}
+#heat-info {
+  background: white;
+  padding: 14px;
+  border-left: 3px solid var(--lne-red);
+  margin-top: 10px;
+  min-height: 90px;
+}
+#heat-info .pg { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--lne-blue); font-size: 1.1em;}
+#heat-info .cr { font-size: .85em; color: var(--lne-grey-dark); margin-top: 4px;}
+#heat-info .score { font-size: 1.4em; font-weight: 700; color: var(--lne-red); font-family: 'Barlow Condensed', sans-serif; margin-top: 6px;}
+#heat-info .note { font-size: .8em; color: var(--lne-grey-dark); font-style: italic; margin-top: 4px; line-height: 1.3;}
+
+/* ===== Personas radar ===== */
+.personas-wrap {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  margin-top: 12px;
+  align-items: start;
+}
+.persona-switch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.persona-btn {
+  background: var(--lne-grey);
+  border: 1px solid var(--lne-grey-mid);
+  padding: 12px 14px;
+  text-align: left;
+  font-family: 'Barlow', sans-serif;
+  font-size: .85em;
+  color: var(--lne-text);
+  cursor: pointer;
+  transition: all .2s ease;
+  border-left: 4px solid var(--lne-grey-mid);
+}
+.persona-btn:hover { background: white; }
+.persona-btn.active {
+  background: var(--lne-blue);
+  color: white;
+  border-color: var(--lne-blue);
+  border-left-color: var(--lne-red);
+}
+.persona-btn .pname { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15em;}
+.persona-btn .pscore { font-size: .8em; opacity: .8; }
+.radar-panel { position: relative; }
+#radar-canvas { max-height: 380px; }
+.radar-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.radar-meta .meta-card {
+  background: var(--lne-grey);
+  padding: 12px 14px;
+  font-size: .8em;
+}
+.radar-meta .meta-card .lbl { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--lne-blue); display: block; font-size: 1em;}
+.radar-meta .meta-card .val { color: var(--lne-grey-dark); }
+
+/* ===== Plan d'amélioration : 6 actions ===== */
+.actions-wrap {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  margin-top: 14px;
+  align-items: start;
+}
+.prio-switch { display: flex; flex-direction: column; gap: 8px;}
+.prio-btn {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all .2s ease;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  color: var(--lne-grey-dark);
+}
+.prio-btn .ptag { font-size: 1.4em; color: var(--lne-blue); display: block; font-weight: 800;}
+.prio-btn .ptime { font-size: .8em; text-transform: uppercase; letter-spacing: .08em;}
+.prio-btn.active {
+  background: var(--lne-blue);
+  color: white;
+  border-color: var(--lne-blue);
+}
+.prio-btn.active .ptag { color: white; }
+.prio-btn.active::after {
+  content: "";
+  display: block;
+  width: 100%; height: 3px;
+  background: var(--lne-red);
+  margin-top: 8px;
+}
+.action-list { display: flex; flex-direction: column; gap: 12px;}
+.action-item {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  border-left: 4px solid var(--lne-red);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all .35s ease;
+}
+.action-item.visible { opacity: 1; transform: translateY(0); }
+.action-item .icon {
+  width: 56px; height: 56px;
+  background: var(--lne-blue);
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.8em;
+  display: flex; align-items: center; justify-content: center;
+}
+.action-item h4 { font-family: 'Barlow Condensed', sans-serif; text-transform: none; letter-spacing: 0; color: var(--lne-blue); font-size: 1.2em; margin: 0 0 4px 0;}
+.action-item p { font-size: .82em; color: var(--lne-grey-dark); margin: 0; line-height: 1.45;}
+.action-item .src { font-size: .72em; color: var(--lne-grey-dark); font-style: italic; margin-top: 6px; display: block;}
+
+/* ===== Cognitif-Affectif-Conatif ===== */
+.cac-chain {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+  position: relative;
+}
+.cac-step {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  padding: 24px;
+  position: relative;
+}
+.cac-step::after {
+  content: "→";
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--lne-red);
+  font-size: 2em;
+  font-weight: 700;
+  z-index: 2;
+}
+.cac-step:last-child::after { display: none; }
+.cac-step .step-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1em;
+  color: var(--lne-red);
+  letter-spacing: .15em;
+}
+.cac-step h4 { color: var(--lne-blue); font-family: 'Barlow Condensed', sans-serif; font-size: 1.5em; text-transform: none; letter-spacing: 0; margin: 6px 0 12px 0;}
+.cac-step .verb { font-style: italic; color: var(--lne-grey-dark); margin-bottom: 12px; font-size: .9em;}
+.cac-step ul { padding-left: 16px; margin: 0; font-size: .8em;}
+.cac-step li { margin-bottom: 5px; line-height: 1.4;}
+
+/* ===== Tableau cohérence ===== */
+.cohtable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  font-size: .88em;
+}
+.cohtable th, .cohtable td {
+  border-bottom: 1px solid var(--lne-grey-mid);
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: top;
+}
+.cohtable th {
+  background: var(--lne-blue);
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .85em;
+  font-weight: 600;
+}
+.cohtable td.obj { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--lne-blue); font-size: 1.15em;}
+.cohtable td.msg { font-style: italic; color: var(--lne-text);}
+.cohtable td.lev { color: var(--lne-grey-dark); font-size: .9em;}
+.cohtable tr:hover td { background: var(--lne-grey); }
+
+/* ===== Mix digital — leviers avec filtre persona ===== */
+.persona-filter { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;}
+.persona-filter button {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  padding: 6px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .8em;
+  letter-spacing: .04em;
+  color: var(--lne-grey-dark);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.persona-filter button.active {
+  background: var(--lne-blue);
+  color: white;
+  border-color: var(--lne-blue);
+}
+.levers-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.lever {
+  background: white;
+  border: 1px solid var(--lne-grey-mid);
+  padding: 18px 16px;
+  border-top: 4px solid var(--lne-blue);
+  transition: all .25s ease;
+  opacity: 1;
+  font-size: .8em;
+}
+.lever.dim { opacity: .25; }
+.lever .lletter {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 2.2em;
+  color: var(--lne-red);
+  line-height: 1;
+}
+.lever h4 { font-family: 'Barlow Condensed', sans-serif; text-transform: none; letter-spacing: 0; color: var(--lne-blue); font-size: 1.1em; margin: 6px 0 10px 0; line-height: 1.05;}
+.lever p { font-size: .85em; color: var(--lne-grey-dark); margin: 0; line-height: 1.35;}
+.lever .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+.lever .tags span { font-size: .7em; background: var(--lne-grey); color: var(--lne-grey-dark); padding: 2px 8px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600;}
+
+/* ===== Lever focus slides ===== */
+.lever-focus {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 32px;
+  margin-top: 18px;
+}
+.lever-focus .left {
+  background: var(--lne-blue);
+  color: white;
+  padding: 32px;
+}
+.lever-focus .left .ltag { font-family: 'Barlow Condensed', sans-serif; color: var(--lne-red); letter-spacing: .15em; text-transform: uppercase; font-size: .85em; font-weight: 700;}
+.lever-focus .left h3 { color: white; font-size: 2.2em; margin: 6px 0 18px 0; }
+.lever-focus .left .quote { font-style: italic; opacity: .85; font-size: .95em; line-height: 1.4;}
+.lever-focus .left .stat { font-family: 'Barlow Condensed', sans-serif; color: var(--lne-red); font-weight: 800; font-size: 3em; line-height: 1; margin-top: 24px;}
+.lever-focus .left .stat-label { font-size: .85em; opacity: .8; margin-top: 4px;}
+.lever-focus .right { padding-top: 4px;}
+.lever-focus .right h4 { color: var(--lne-grey-dark); margin-bottom: 8px;}
+.lever-focus .right ul { padding-left: 16px; }
+.lever-focus .right li { margin-bottom: 8px; line-height: 1.4;}
+
+/* ===== Recommandation phare ===== */
+.brand-reveal {
+  text-align: center;
+  padding-top: 30px;
+}
+.brand-reveal .topword { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .25em; color: var(--lne-red); text-transform: uppercase; font-weight: 700;}
+.brand-reveal .brand-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 24px 0 16px 0;
+  padding: 20px 40px;
+  border-top: 6px solid var(--lne-blue);
+  border-bottom: 6px solid var(--lne-blue);
+}
+.brand-reveal .brand-logo .lne {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 5em;
+  color: var(--lne-blue);
+  letter-spacing: -.02em;
+}
+.brand-reveal .brand-logo .bar {
+  width: 6px;
+  height: 80px;
+  background: var(--lne-red);
+}
+.brand-reveal .brand-logo .academy {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 3.4em;
+  color: var(--lne-blue);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.brand-reveal .promise {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-style: italic;
+  color: var(--lne-grey-dark);
+  font-size: 1.6em;
+  margin-top: 14px;
+}
+.brand-reveal .six {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 36px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.brand-reveal .six div {
+  background: var(--lne-blue);
+  color: white;
+  padding: 12px 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .8em;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ===== Roadmap timeline ===== */
+.timeline {
+  margin-top: 28px;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 38px;
+  left: 0; right: 0;
+  height: 3px;
+  background: var(--lne-grey-mid);
+}
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  position: relative;
+}
+.tl-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.tl-card .dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--lne-blue);
+  border: 4px solid white;
+  box-shadow: 0 0 0 3px var(--lne-blue);
+  margin-bottom: 18px;
+  margin-top: 28px;
+  z-index: 2;
+}
+.tl-card.p2 .dot { background: var(--lne-red); box-shadow: 0 0 0 3px var(--lne-red);}
+.tl-card.p3 .dot { background: #b35900; box-shadow: 0 0 0 3px #b35900;}
+.tl-card .when { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--lne-blue); font-size: 1.4em; letter-spacing: .1em;}
+.tl-card.p2 .when { color: var(--lne-red); }
+.tl-card.p3 .when { color: #b35900; }
+.tl-card .what { color: var(--lne-grey-dark); font-size: .85em; margin-top: 10px; max-width: 240px; line-height: 1.4;}
+.tl-card ul { padding-left: 0; list-style: none; font-size: .82em; margin-top: 10px;}
+.tl-card li { padding: 4px 0; color: var(--lne-grey-dark); }
+.tl-card li::before { content: "→ "; color: var(--lne-red); font-weight: 700;}
+
+/* ===== Sources ===== */
+.sources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 16px;
+  font-size: .75em;
+}
+.sources-col h4 { color: var(--lne-blue); font-family: 'Barlow Condensed', sans-serif; text-transform: none; letter-spacing: 0; font-size: 1em; margin-bottom: 8px; border-bottom: 2px solid var(--lne-red); padding-bottom: 4px;}
+.sources-col ul { padding-left: 14px; margin: 0;}
+.sources-col li { margin-bottom: 5px; color: var(--lne-grey-dark); line-height: 1.35;}
+.sources-col li strong { color: var(--lne-text); font-weight: 600;}
+
+/* ===== Word cloud styling ===== */
+.wordcloud-wrap {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  margin-top: 12px;
+}
+#wordcloud-svg { width: 100%; height: 420px; background: var(--lne-grey);}
+.wc-meta { display: flex; flex-direction: column; gap: 14px;}
+.wc-stat {
+  background: var(--lne-blue);
+  color: white;
+  padding: 22px 24px;
+}
+.wc-stat .big { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 3.5em; color: var(--lne-red); line-height: 1;}
+.wc-stat .lbl { font-size: .85em; opacity: .85; margin-top: 4px; line-height: 1.35;}
+.wc-quote {
+  background: white;
+  border-left: 4px solid var(--lne-red);
+  padding: 16px 20px;
+  font-style: italic;
+  font-size: .85em;
+  color: var(--lne-grey-dark);
+  line-height: 1.4;
+}
+.wc-quote cite { display: block; font-style: normal; font-size: .8em; color: var(--lne-blue); margin-top: 6px; font-weight: 600;}
+
+/* ===== Final thanks ===== */
+.thanks {
+  background: var(--lne-blue);
+  color: white;
+  padding: 70px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.thanks h1 { color: white; font-size: 6em; line-height: .95;}
+.thanks h1 .red { color: var(--lne-red); }
+.thanks .qa { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4em; letter-spacing: .15em; text-transform: uppercase; opacity: .8; margin-top: 30px;}
+.thanks .team-line {
+  display: flex;
+  gap: 30px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1em;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+/* ===== Reveal helpers ===== */
+.reveal .progress { color: var(--lne-red); }
+.reveal .controls { color: var(--lne-blue); }
+.reveal .slide-number { background: rgba(0,0,0,0); color: var(--lne-grey-mid); font-family: 'Barlow Condensed', sans-serif; font-size: 14px;}
+
+/* No bullets default */
+.reveal ul { list-style: none; padding-left: 0; }
+.reveal ul li { padding-left: 22px; position: relative; }
+.reveal ul li::before { content: ""; position: absolute; left: 0; top: 12px; width: 12px; height: 2px; background: var(--lne-red);}
+.reveal ul ul { margin-top: 4px; }
+.reveal ul ul li::before { background: var(--lne-grey-mid); top: 11px; width: 8px; }
+/* Keep default bullets inside specific components */
+.bench-fam ul li, .swot-cell ul li, .insight ul li, .tripty-card ul li, .cac-step ul li, .sources-col ul li,
+.lever-focus .right ul li, .tl-card ul li {
+  padding-left: 0; }
+.bench-fam ul li::before, .swot-cell ul li::before, .insight ul li::before, .tripty-card ul li::before,
+.cac-step ul li::before, .sources-col ul li::before, .lever-focus .right ul li::before, .tl-card ul li::before {
+  display: none;
+}
+
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ================ SLIDE 0 — COVER ================ -->
+<section class="cover">
+  <div class="topbrand">
+    <div class="logo">LNE<span class="bar">|</span></div>
+    <span class="academy">Academy</span>
+  </div>
+
+  <div>
+    <div class="meta">Projet collectif de recherche en gestion — Mai 2026</div>
+    <h1>Construire une marque<br><span class="accent">qui se voit, qui se vend.</span></h1>
+    <p style="max-width: 800px; opacity:.85; font-size: 1.05em; margin-top: 18px;">
+      Stratégie de branding et de communication digitale pour développer la visibilité et l'attractivité de l'offre de formation du LNE.
+    </p>
+  </div>
+
+  <div>
+    <div class="team">
+      <div class="person"><span class="name">Jacques</span><span class="role">Diagnostic & benchmark</span></div>
+      <div class="person"><span class="name">Enzo</span><span class="role">Stratégie marketing (STP)</span></div>
+      <div class="person"><span class="name">Vojin</span><span class="role">Lisibilité de l'offre</span></div>
+      <div class="person"><span class="name">Kessy-Rose</span><span class="role">Objectifs de communication</span></div>
+      <div class="person"><span class="name">Louise</span><span class="role">Mix digital</span></div>
+    </div>
+    <div class="footer-line">
+      <span>Master MC2 — Groupe 1 · Université Paris Panthéon-Assas</span>
+      <span>Client : LNE — Thibaut Blachère</span>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Bonjour à tous. Nous sommes le Groupe 1 du Master MC2, et nous présentons aujourd'hui notre projet collectif réalisé pour le LNE — le Laboratoire National de Métrologie et d'Essais. Notre interlocuteur côté client, Thibaut Blachère, nous a donné une mission claire : penser la stratégie de branding et de communication digitale pour rendre visible et attractive l'offre de formation du LNE. La présentation est en trois parties — diagnostic, lisibilité de l'offre, et plan de communication digitale — portée par nous cinq. Je passe la parole à Jacques pour le diagnostic.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 1 — PROBLEMATIQUE ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>Introduction</span></div><div class="right">01</div></div>
+  <h4 style="margin-top: 30px;">Problématique centrale</h4>
+  <div class="quote-card" style="margin-top: 10px;">
+    Comment construire une <em style="color:#E6192D; font-style:normal;">identité forte</em> et une <em style="color:#E6192D; font-style:normal;">communication digitale efficace</em> pour développer la visibilité et l'attractivité de l'offre de formation du LNE ?
+    <span class="cite">Question de recherche — Mission cadrée avec Thibaut Blachère, mai 2026</span>
+  </div>
+
+  <h4 style="margin-top: 36px;">Quatre leviers stratégiques structurent toute la réponse</h4>
+  <div class="cards cols-4" style="margin-top: 14px;">
+    <div class="card"><div class="num">01</div><h4>Identité</h4><p>Qui est l'offre ? — branding, naming, charte, manifeste.</p></div>
+    <div class="card"><div class="num">02</div><h4>Communication digitale</h4><p>Comment parle-t-elle ? — content, social, hub éditorial.</p></div>
+    <div class="card"><div class="num">03</div><h4>Visibilité</h4><p>Qui la voit ? — SEO, earned media, partenariats normatifs.</p></div>
+    <div class="card"><div class="num">04</div><h4>Attractivité</h4><p>Pourquoi la choisit-on ? — positionnement et preuve sociale.</p></div>
+  </div>
+
+  <aside class="notes">
+    Notre problématique de recherche est simple à formuler, beaucoup moins à résoudre : comment construire une identité forte ET une communication digitale efficace pour le centre de formation du LNE. Pour la traiter, nous l'avons décomposée en quatre leviers stratégiques — identité, communication, visibilité, attractivité — qui structurent toute la suite de la présentation. Vous les retrouverez en filigrane dans chaque partie.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 2 — DIAGNOSTIC PHRASE ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>Diagnostic — en une phrase</span></div><div class="right">02</div></div>
+  <h2 style="margin-top: 40px; margin-bottom: 8px;">Le verdict en quatre temps.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: 1.1em; max-width: 75%;">
+    Ce que dit le marché que personne ne dit chez le LNE.
+  </p>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 50px;">
+    <div style="background: var(--lne-blue); color: white; padding: 32px 26px;">
+      <div style="font-family: 'Barlow Condensed'; font-size: 1.1em; letter-spacing:.15em; color: var(--lne-red); text-transform: uppercase; font-weight: 700;">Il a la</div>
+      <div style="font-family: 'Barlow Condensed'; font-size: 3.2em; font-weight: 800; line-height: 1; margin-top: 6px;">légitimité</div>
+      <div style="margin-top: 12px; font-style: italic; font-size: .9em; opacity:.8;">pas la marque.</div>
+    </div>
+    <div style="background: var(--lne-blue); color: white; padding: 32px 26px;">
+      <div style="font-family: 'Barlow Condensed'; font-size: 1.1em; letter-spacing:.15em; color: var(--lne-red); text-transform: uppercase; font-weight: 700;">Il a l'</div>
+      <div style="font-family: 'Barlow Condensed'; font-size: 3.2em; font-weight: 800; line-height: 1; margin-top: 6px;">expertise</div>
+      <div style="margin-top: 12px; font-style: italic; font-size: .9em; opacity:.8;">pas le récit.</div>
+    </div>
+    <div style="background: var(--lne-blue); color: white; padding: 32px 26px;">
+      <div style="font-family: 'Barlow Condensed'; font-size: 1.1em; letter-spacing:.15em; color: var(--lne-red); text-transform: uppercase; font-weight: 700;">Il a les</div>
+      <div style="font-family: 'Barlow Condensed'; font-size: 3.2em; font-weight: 800; line-height: 1; margin-top: 6px;">clients</div>
+      <div style="margin-top: 12px; font-style: italic; font-size: .9em; opacity:.8;">pas la preuve.</div>
+    </div>
+    <div style="background: var(--lne-blue); color: white; padding: 32px 26px;">
+      <div style="font-family: 'Barlow Condensed'; font-size: 1.1em; letter-spacing:.15em; color: var(--lne-red); text-transform: uppercase; font-weight: 700;">Il a les</div>
+      <div style="font-family: 'Barlow Condensed'; font-size: 3.2em; font-weight: 800; line-height: 1; margin-top: 6px;">cibles</div>
+      <div style="margin-top: 12px; font-style: italic; font-size: .9em; opacity:.8;">pas les canaux.</div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Si je devais résumer notre diagnostic en une phrase, ce serait celle-ci : le LNE a la légitimité mais pas la marque, il a l'expertise mais pas le récit, il a les clients mais pas la preuve, il a les cibles mais pas les canaux. Cette phrase est le fil rouge de toute la suite — chacun de ces quatre déficits sera adressé par une recommandation concrète.
+  </aside>
+</section>
+
+<!-- ================ DIVIDER — PART I ================ -->
+<section class="divider">
+  <div class="part-num">Partie I</div>
+  <h1>Diagnostic LNE<br>et benchmark international.</h1>
+  <div class="speaker">Présenté par <span>Jacques</span> & <span>Enzo</span></div>
+  <aside class="notes">Transition : Partie I — diagnostic interne et benchmark international. Jacques.</aside>
+</section>
+
+<!-- ================ SLIDE 4 — SWOT ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>I.1 · SWOT de l'offre formation</span></div><div class="right">04</div></div>
+  <h2 style="margin-bottom: 4px;">Une légitimité maximale, un dispositif minimal.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em; margin-bottom: 8px;">L'analyse interne révèle un écart structurel entre l'actif et son enveloppe communicationnelle.</p>
+
+  <div class="swot">
+    <div class="swot-cell s">
+      <div class="num">S</div>
+      <div class="tag">Forces</div>
+      <ul>
+        <li><strong>Légitimité institutionnelle</strong> française unique — actif intransférable</li>
+        <li><strong>Expertise transverse</strong> sur toute la chaîne (métro, essais, certif, R&D)</li>
+        <li><strong>Portefeuille grands comptes régulés</strong> (pharma, aéro, agro, énergie)</li>
+        <li><strong>Crédibilité normative</strong> au cœur d'ISO 17025, OIML</li>
+      </ul>
+    </div>
+    <div class="swot-cell w">
+      <div class="num">W</div>
+      <div class="tag">Faiblesses</div>
+      <ul>
+        <li><strong>Aucune marque produit</strong> formation : ni logo, ni charte, ni signature</li>
+        <li><strong>Site institutionnel</strong>, pas commercial — aucun parcours acheteur</li>
+        <li><strong>Catalogue par jargon technique</strong> — exclut RH et prescripteurs</li>
+        <li><strong>Plus petit département</strong> du LNE — ressources com limitées</li>
+      </ul>
+    </div>
+    <div class="swot-cell o">
+      <div class="num">O</div>
+      <div class="tag">Opportunités</div>
+      <ul>
+        <li><strong>Marché formation B2B Europe</strong> : +5-8 %/an <em>(Cegos)</em></li>
+        <li><strong>Cycle révision normative 2025-2026</strong> (ISO 17025, OIML) — pic mécanique</li>
+        <li><strong>Micro-certifications digitales</strong> (LinkedIn, Credly) sous-exploitées</li>
+        <li><strong>Marché francophone export</strong> inexploité (Maghreb, Afrique, Québec)</li>
+      </ul>
+    </div>
+    <div class="swot-cell t">
+      <div class="num">T</div>
+      <div class="tag">Menaces</div>
+      <ul>
+        <li><strong>Concurrence privée agressive</strong> : TÜV, SGS, Bureau Veritas, DEKRA</li>
+        <li><strong>NPL (UK)</strong> a une longueur d'avance sur les pairs publics</li>
+        <li><strong>Commoditisation</strong> par MOOC gratuits (Coursera, edX)</li>
+        <li><strong>Pression budgétaire</strong> formation continue depuis 2024</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    L'analyse SWOT est sans appel : on a des forces énormes — la légitimité publique, l'expertise transverse, le portefeuille client — qu'aucun acteur privé ne peut égaler. Mais en face, les faiblesses sont structurelles : pas de marque produit, pas de site commercial, un catalogue qui parle en jargon. Côté opportunités, le marché est porteur et le cycle normatif 2025-26 va générer un pic de demande. Côté menaces, l'inaction nous fait perdre du terrain face à TÜV, SGS et même NPL au Royaume-Uni qui a déjà industrialisé sa marque formation.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 5 — BENCHMARK 3 FAMILLES ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>I.1 · Benchmark international</span></div><div class="right">05</div></div>
+  <h2 style="margin-bottom: 4px;">Trois familles d'acteurs, un standard de marché commun.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Analyse menée sur les acteurs visibles du marché formation métrologie / qualité / certification.</p>
+
+  <div class="bench-grid">
+    <div class="bench-fam public">
+      <h4>Instituts nationaux de métrologie</h4>
+      <div class="sub">Pairs directs du LNE — réseau EURAMET/BIPM</div>
+      <ul>
+        <li><strong>NPL</strong> (UK) — référence mondiale marque formation</li>
+        <li><strong>PTB</strong> (DE) — PTB Academy, coopération internationale</li>
+        <li><strong>NIST</strong> (US) — autorité SEO via stratégie de contenu massive</li>
+        <li><strong>VSL</strong> (NL) — académie dédiée, ton moderne</li>
+        <li>METAS · INRIM · NMIJ — présences plus discrètes</li>
+      </ul>
+    </div>
+    <div class="bench-fam private">
+      <h4>Acteurs privés globaux</h4>
+      <div class="sub">Concurrents directs sur le marché formation</div>
+      <ul>
+        <li><strong>TÜV SÜD Akademie</strong> · TÜV Rheinland — ~500 000 participants/an</li>
+        <li><strong>SGS Academy</strong> (CH) — e-learning massif, multi-pays</li>
+        <li><strong>Bureau Veritas Training</strong> (FR) — marque produit packagée</li>
+        <li><strong>Intertek</strong> · <strong>DEKRA</strong> — catalogues mondiaux</li>
+      </ul>
+    </div>
+    <div class="bench-fam norm">
+      <h4>Organismes normatifs & France</h4>
+      <div class="sub">Sphère institutionnelle et nationale</div>
+      <ul>
+        <li><strong>ISO Academy</strong> · IEC Academy</li>
+        <li><strong>OIML</strong> · <strong>BIPM</strong></li>
+        <li><strong>Cetim</strong> · <strong>Apave</strong> · <strong>Cnam</strong></li>
+        <li><strong>CFM</strong> — Collège Français de Métrologie</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px; background: var(--lne-grey); padding: 18px 24px; border-left: 4px solid var(--lne-red);">
+    <strong style="color: var(--lne-blue); font-family: 'Barlow Condensed'; font-size: 1.15em;">Insight transversal —</strong>
+    <span style="color: var(--lne-grey-dark);">Un standard de marché émerge des pairs publics ET des leaders privés. Le LNE est aujourd'hui le seul institut national majeur à n'en avoir activé aucun élément.</span>
+  </div>
+
+  <aside class="notes">
+    On a benchmarké trois familles d'acteurs. À gauche, nos pairs publics — NPL au UK est devenu LA référence mondiale sur la marque formation. Au milieu, les privés : TÜV forme un demi-million de personnes par an. À droite, les organismes normatifs comme ISO Academy et les acteurs français comme Cetim et Apave. Ce qui ressort, c'est qu'un standard de marché commun a émergé chez tous ces acteurs — et le LNE est le seul à n'avoir activé aucun de ses éléments. Je détaille ce standard sur la slide suivante.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 6 — STANDARD DE MARCHÉ ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>I.1 · Standard de marché</span></div><div class="right">06</div></div>
+  <h2 style="margin-bottom: 4px;">Six éléments. Le LNE en a activé <em class="red">zéro</em>.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Pattern observé chez NPL, ISO, TÜV, SGS, Bureau Veritas — toutes catégories d'acteurs confondues.</p>
+
+  <div class="standard-list">
+    <div class="std-row"><div class="check">1</div><div class="txt"><strong>Sub-brand « Academy »</strong><span>Marque produit dédiée, dérivée de la marque mère</span></div></div>
+    <div class="std-row"><div class="check">2</div><div class="txt"><strong>Site / sous-domaine distinct</strong><span>Logique commerciale, parcours d'achat B2B</span></div></div>
+    <div class="std-row"><div class="check">3</div><div class="txt"><strong>Catalogue à double entrée</strong><span>Par persona ET par secteur — pas par jargon technique</span></div></div>
+    <div class="std-row"><div class="check">4</div><div class="txt"><strong>Dispositif éditorial pull</strong><span>Blog, webinars mensuels, livres blancs experts</span></div></div>
+    <div class="std-row"><div class="check">5</div><div class="txt"><strong>LinkedIn structuré</strong><span>Showcase Page dédiée + employee advocacy</span></div></div>
+    <div class="std-row"><div class="check">6</div><div class="txt"><strong>Preuve sociale activée</strong><span>Logos clients, études de cas, badges digitaux</span></div></div>
+  </div>
+
+  <p style="margin-top: 26px; color: var(--lne-grey-dark); font-size: .85em; font-style: italic;">
+    <strong style="color: var(--lne-blue);">Sources :</strong> sites et catalogues NPL · TÜV SÜD Akademie · SGS Academy · Bureau Veritas Training · ISO Academy · Bureau Veritas dispose d'une Showcase LinkedIn de +40 000 abonnés (Gartner B2B Buying Journey, 2023).
+  </p>
+
+  <aside class="notes">
+    Voilà le standard de marché : six éléments qu'on retrouve chez tous les acteurs matures. Sub-brand "Academy", site ou sous-domaine distinct, catalogue à double entrée par persona et par secteur, contenu pull avec blog et webinars, présence LinkedIn structurée, et preuve sociale activée avec logos clients et études de cas. Le LNE n'en a activé aucun. Le standard de l'industrie est connu, documenté, validé. La question n'est plus de savoir QUOI faire — la question est de décider qu'on le fait.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 7 — 4 INSIGHTS ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>I.1 · Insights stratégiques</span></div><div class="right">07</div></div>
+  <h2 style="margin-bottom: 4px;">Quatre insights structurent la réponse.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Croisement du SWOT et du benchmark.</p>
+
+  <div class="insights">
+    <div class="insight">
+      <span class="ribbon">Insight 01</span>
+      <h4>Légitimité maximale, dispositif de marque minimal.</h4>
+      <p>Le LNE possède l'actif le plus rare du marché — la légitimité publique française — mais ne l'a jamais formalisé en marque. Créer <strong>« LNE Academy »</strong> n'est pas cosmétique : c'est le prérequis sans lequel aucune communication efficace n'est possible.</p>
+    </div>
+    <div class="insight">
+      <span class="ribbon">Insight 02</span>
+      <h4>Un positionnement différenciant à conquérir.</h4>
+      <p>Aucun concurrent n'occupe la case <em>« référence publique nationale + puissance commerciale moderne »</em>. NPL = rigueur sans chaleur. TÜV/SGS/BV = puissance mais perception privée. <strong>Cette case est vacante.</strong></p>
+    </div>
+    <div class="insight">
+      <span class="ribbon">Insight 03</span>
+      <h4>La bataille se gagne par l'autorité, pas la publicité.</h4>
+      <p>Pas de moyens pour rivaliser avec les budgets paid de TÜV ou SGS — mais pas besoin. L'ADN public oriente vers une stratégie <strong>earned + owned</strong> (autorité éditoriale, partenariats normatifs), à l'image de NPL et NIST.</p>
+    </div>
+    <div class="insight">
+      <span class="ribbon">Insight 04</span>
+      <h4>Le triptyque B2B = colonne vertébrale.</h4>
+      <p>Le triptyque <strong>acheteur / prescripteur / utilisateur</strong> validé par le client est conforme au cadre Gartner B2B Buying Journey 2023. Il sert de fil rouge unique à toutes les recommandations, en distinguant <em>inter</em> (sessions ouvertes) et <em>intra</em> (entreprise).</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    De ce croisement SWOT × benchmark, quatre insights structurent toute la suite. Insight 1 : on a la légitimité maximale et le dispositif minimal — donc créer la marque "LNE Academy" est le prérequis absolu. Insight 2 : la case "référence publique nationale + puissance commerciale moderne" est vacante, personne ne l'occupe — c'est notre opportunité. Insight 3 : on ne gagnera pas par la pub mais par l'autorité éditoriale, c'est l'ADN public qui le dicte. Insight 4 : le triptyque acheteur/prescripteur/utilisateur est notre fil rouge — Enzo va l'approfondir maintenant.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 8 — STP (ENZO) ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>I.2 · Stratégie marketing — STP</span></div><div class="right">08</div></div>
+  <h2 style="margin-bottom: 4px;">Segmentation, ciblage, positionnement.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Une niche ultra-technique, à valeur réglementaire — 184 prestations au catalogue.</p>
+
+  <div class="stp-grid">
+    <div class="stp-block">
+      <h4>Segmentation interne — par thématique</h4>
+      <p style="font-size: .85em; color: var(--lne-grey-dark); margin: 0;">9 univers techniques couvrant toute la chaîne de la confiance industrielle.</p>
+      <div class="tag-list">
+        <span class="pill">Dispositifs médicaux</span>
+        <span class="pill">Métrologie appliquée</span>
+        <span class="pill">Sécurité info & IA</span>
+        <span class="pill">QSE-Énergie</span>
+        <span class="pill">Métrologie générale</span>
+        <span class="pill">Contact alimentaire</span>
+        <span class="pill">Système de management</span>
+        <span class="pill">Produits connectés</span>
+        <span class="pill">Métrologie légale</span>
+      </div>
+
+      <h4 style="margin-top: 18px;">Et par support</h4>
+      <div class="tag-list">
+        <span class="pill red">Présentiel</span>
+        <span class="pill red">Webinars</span>
+        <span class="pill red">Journées techniques</span>
+        <span class="pill red">Forum</span>
+      </div>
+    </div>
+
+    <div class="stp-block" style="background: var(--lne-blue); color: white;">
+      <h4 style="color: white;">Ciblage</h4>
+      <p style="font-size: .9em; opacity:.9; margin: 0;">Cible décisionnaire principale : <strong style="color: var(--lne-red);">RH / DRH d'entreprises</strong> qui forment leurs salariés pour raisons réglementaires.</p>
+
+      <h4 style="color: white; margin-top: 18px;">Positionnement</h4>
+      <p style="font-size: .9em; opacity:.9; margin: 0;"><strong style="color: var(--lne-red);">Expertise de source.</strong> Les formations sont construites et dispensées par les experts qui font les essais et les normes au quotidien. La confiance envers les formateurs est renforcée par la légitimité institutionnelle du LNE.</p>
+
+      <p style="font-size: .85em; opacity:.75; margin-top: 18px; font-style: italic;">Sur les questions de métrologie, aucun organisme public ou privé ne peut rivaliser avec l'expertise du LNE. <strong style="color: var(--lne-red); font-style: normal;">La niche est notre forteresse.</strong></p>
+    </div>
+  </div>
+
+  <p style="margin-top: 16px; color: var(--lne-grey-dark); font-size: .8em; font-style: italic;">
+    Cadre : Kotler & Keller, <em>Marketing Management</em>, 16<sup>e</sup> éd., 2022 — Segmentation / Targeting / Positioning.
+  </p>
+
+  <aside class="notes">
+    Enzo prend la parole. La segmentation se lit à deux niveaux : par thématique — 9 univers techniques qui couvrent toute la chaîne de la confiance industrielle — et par support, du présentiel au forum. Le ciblage est exclusif : ce sont les RH/DRH d'entreprises qui sont les prescripteurs budgétaires, pas les utilisateurs finaux. Et le positionnement, c'est "l'expertise de source" : on ne forme pas avec des formateurs externes, on forme avec les experts qui font les essais au quotidien. Sur la métrologie, aucun organisme ne peut rivaliser — la niche n'est pas un handicap, c'est notre forteresse.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 9 — TRIPTYQUE B2B ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>I.2 · Triptyque B2B Acheteur / Prescripteur / Utilisateur</span></div><div class="right">09</div></div>
+  <h2 style="margin-bottom: 4px;">Trois cibles, trois discours, trois canaux.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Le triptyque B2B est validé par le client et le cadre Gartner — c'est le fil rouge de toute la suite.</p>
+
+  <div class="tripty">
+    <div class="tripty-card">
+      <h4>Acheteur</h4>
+      <div class="role">RH · DRH — décisionnaire budget</div>
+      <ul>
+        <li><strong>Cherche :</strong> certifications, réputation, avis</li>
+        <li><strong>Question :</strong> « Est-ce finançable CPF/OPCO ? »</li>
+        <li><strong>Canaux :</strong> LinkedIn, email, salons RH</li>
+      </ul>
+    </div>
+    <div class="tripty-card">
+      <h4>Prescripteur</h4>
+      <div class="role">Responsable qualité · technique — influenceur</div>
+      <ul>
+        <li><strong>Cherche :</strong> contenu pointu, normes, référentiels</li>
+        <li><strong>Question :</strong> « Est-ce conforme à ISO/OIML ? »</li>
+        <li><strong>Canaux :</strong> webinars techniques, YouTube, LinkedIn expert</li>
+      </ul>
+    </div>
+    <div class="tripty-card">
+      <h4>Utilisateur</h4>
+      <div class="role">Métrologue · technicien · ingénieur R&D — stagiaire</div>
+      <ul>
+        <li><strong>Cherche :</strong> qualité pratique, applicabilité terrain</li>
+        <li><strong>Question :</strong> « Est-ce rigoureux ? »</li>
+        <li><strong>Canaux :</strong> site formation, témoignages, forums pros</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+    <div style="background: var(--lne-grey); padding: 18px 22px; font-size: .85em;">
+      <strong style="color: var(--lne-blue); font-family:'Barlow Condensed'; font-size: 1.1em;">Forrester (2024)</strong>
+      <p style="margin: 4px 0 0 0; color: var(--lne-grey-dark);">Un achat B2B moyen implique <strong style="color: var(--lne-red);">13 parties prenantes</strong> et traverse plusieurs départements dans 89 % des cas.</p>
+    </div>
+    <div style="background: var(--lne-grey); padding: 18px 22px; font-size: .85em;">
+      <strong style="color: var(--lne-blue); font-family:'Barlow Condensed'; font-size: 1.1em;">Gartner — The Challenger Customer (2015)</strong>
+      <p style="margin: 4px 0 0 0; color: var(--lne-grey-dark);">Chaque membre du comité d'achat arrive avec <strong style="color: var(--lne-red);">4 à 5 éléments de recherche indépendants</strong> qu'il partage en interne.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Ce triptyque, vous allez le revoir partout dans la suite. Acheteur : c'est le RH ou DRH qui valide le budget — il pose la question du financement. Prescripteur : c'est le responsable qualité qui recommande la formation — il veut du contenu pointu. Utilisateur : c'est le métrologue qui suit la formation — il veut de la rigueur. Chacun a son canal, son message, sa question centrale. Et le poids : Forrester nous dit qu'un achat B2B moyen implique 13 parties prenantes — donc on ne peut pas parler à un seul interlocuteur. Je laisse Vojin présenter la Partie II.
+  </aside>
+</section>
+
+<!-- ================ DIVIDER — PART II ================ -->
+<section class="divider">
+  <div class="part-num">Partie II</div>
+  <h1>Lisibilité de l'offre :<br>diagnostic, scoring, plan.</h1>
+  <div class="speaker">Présenté par <span>Vojin</span></div>
+  <aside class="notes">Transition : Partie II — l'audit de lisibilité du site, c'est moi qui le présente. Vojin.</aside>
+</section>
+
+<!-- ================ SLIDE 11 — METHODO ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>II · Cadre méthodologique</span></div><div class="right">11</div></div>
+  <h2 style="margin-bottom: 4px;">Trois corpus théoriques. Une grille opératoire.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Démarche qualitative multi-critères appliquée à 6 pages du site lne.fr.</p>
+
+  <div class="methodo-grid">
+    <div class="methodo">
+      <div class="num">01</div>
+      <h4>Sciences cognitives</h4>
+      <p>La mémoire de travail humaine a une capacité limitée. Toute surcharge sémantique — ici le jargon métrologique — produit un abandon de lecture.</p>
+      <span class="src">Sweller (1988) · Sweller, Van Merriënboer & Paas (1998), Educational Psychology Review · Miller (1956), 7 ± 2</span>
+    </div>
+    <div class="methodo">
+      <div class="num">02</div>
+      <h4>Plain Language & UX</h4>
+      <p>Le langage simple n'est pas une concession : c'est une condition de conversion, même pour les experts. 79 % des internautes scannent sans lire.</p>
+      <span class="src">Nielsen (1994, 2008) · Loranger / NN/g (2019) · Redish (2012) · Lindgaard et al. (2006) — 50 ms</span>
+    </div>
+    <div class="methodo">
+      <div class="num">03</div>
+      <h4>Comportement d'achat B2B</h4>
+      <p>Le buying committee compte 13 personnes en moyenne. 89 % des décisions traversent plusieurs départements. Chacun lit avec son prisme métier.</p>
+      <span class="src">Forrester (2024) · Gartner / Adamson et al. (2015) · Influ2 (2026) — utilisateur décideur dans 16 % des cas seulement</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 22px; background: var(--lne-grey); padding: 14px 20px; font-size: .85em; border-left: 4px solid var(--lne-red);">
+    <strong style="color: var(--lne-blue); font-family:'Barlow Condensed'; font-size: 1.1em;">Scoring —</strong>
+    <span style="color: var(--lne-grey-dark);">indice de lisibilité fondé sur Flesch-Kincaid (Kincaid et al., 1975) adapté au français professionnel. Validé empiriquement par Guo et al. (2025, arXiv:2505.01980) : n=4 563 — gains de compréhension de +3,9 % à +14,6 % sur corpus simplifiés.</span>
+  </div>
+
+  <aside class="notes">
+    Avant les résultats, le cadre. Trois corpus théoriques convergent. Un : les sciences cognitives — Sweller et Miller — qui montrent que la mémoire de travail sature très vite, et que le jargon non traduit produit mécaniquement un abandon de lecture. Deux : l'UX et le plain language — Nielsen, NN/g — qui rappellent que 79 % des gens scannent les pages sans les lire, et que la première impression se forme en 50 millisecondes. Trois : le comportement d'achat B2B — Forrester, Gartner — qui établit le poids du comité d'achat. Le scoring s'appuie sur Flesch-Kincaid, validé récemment par une étude randomisée sur 4 500 participants.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 12 — PÉRIMÈTRE + SCORE GLOBAL ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>II · Périmètre & score global</span></div><div class="right">12</div></div>
+  <h2 style="margin-bottom: 4px;">Six pages, cinq critères, un résultat sans appel.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">L'audit a porté sur le parcours critique de l'acheteur formation.</p>
+
+  <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; margin-top: 20px; align-items: start;">
+    <div>
+      <h4>Périmètre — 6 pages auditées sur lne.fr</h4>
+      <ol style="padding-left: 0; counter-reset: pg; font-size: .9em;">
+        <li style="counter-increment: pg; padding: 8px 0; padding-left: 36px; border-bottom: 1px solid var(--lne-grey); position: relative;"><span style="position:absolute; left:0; top:8px; font-family:'Barlow Condensed'; color: var(--lne-red); font-weight: 800; font-size: 1.2em;">01</span>Page d'accueil</li>
+        <li style="counter-increment: pg; padding: 8px 0; padding-left: 36px; border-bottom: 1px solid var(--lne-grey); position: relative;"><span style="position:absolute; left:0; top:8px; font-family:'Barlow Condensed'; color: var(--lne-red); font-weight: 800; font-size: 1.2em;">02</span>Catalogue formation</li>
+        <li style="counter-increment: pg; padding: 8px 0; padding-left: 36px; border-bottom: 1px solid var(--lne-grey); position: relative;"><span style="position:absolute; left:0; top:8px; font-family:'Barlow Condensed'; color: var(--lne-red); font-weight: 800; font-size: 1.2em;">03</span>Fiche « Le métier de métrologue »</li>
+        <li style="counter-increment: pg; padding: 8px 0; padding-left: 36px; border-bottom: 1px solid var(--lne-grey); position: relative;"><span style="position:absolute; left:0; top:8px; font-family:'Barlow Condensed'; color: var(--lne-red); font-weight: 800; font-size: 1.2em;">04</span>Fiche « Pratiques de base en métrologie »</li>
+        <li style="counter-increment: pg; padding: 8px 0; padding-left: 36px; border-bottom: 1px solid var(--lne-grey); position: relative;"><span style="position:absolute; left:0; top:8px; font-family:'Barlow Condensed'; color: var(--lne-red); font-weight: 800; font-size: 1.2em;">05</span>Page Métrologie — Étalonnage</li>
+        <li style="counter-increment: pg; padding: 8px 0; padding-left: 36px; position: relative;"><span style="position:absolute; left:0; top:8px; font-family:'Barlow Condensed'; color: var(--lne-red); font-weight: 800; font-size: 1.2em;">06</span>Page Certification</li>
+      </ol>
+
+      <h4 style="margin-top: 24px;">Cinq critères de clarté (note 1 → 5)</h4>
+      <div class="tag-list">
+        <span class="pill">Clarté du titre</span>
+        <span class="pill">Vocabulaire accessible</span>
+        <span class="pill">Explicitation des bénéfices</span>
+        <span class="pill">Visibilité des CTA</span>
+        <span class="pill">Adaptation non-experts</span>
+      </div>
+    </div>
+
+    <div style="background: var(--lne-blue); color: white; padding: 36px 30px; text-align: center;">
+      <div style="font-family:'Barlow Condensed'; letter-spacing: .15em; color: var(--lne-red); text-transform: uppercase; font-weight: 700; font-size: .85em;">Score global</div>
+      <div style="font-family: 'Barlow Condensed'; font-weight: 800; font-size: 7em; line-height: 1; margin: 8px 0;">31<span style="font-size: .4em; opacity: .6;">/100</span></div>
+      <div style="opacity: .85; font-size: .9em; line-height: 1.45;">Indice de lisibilité agrégé.<br>Référence : <strong style="color: var(--lne-red); font-style: normal;">seuil acceptable B2B = 60</strong>.</div>
+
+      <div style="border-top: 1px solid rgba(255,255,255,.25); margin-top: 24px; padding-top: 20px;">
+        <div style="font-family: 'Barlow Condensed'; font-size: 2.8em; font-weight: 800; color: var(--lne-red); line-height: 1;">0<span style="font-size: .5em; color: white;">/4</span></div>
+        <div style="font-size: .8em; opacity: .85;">portes d'entrée persona</div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Le périmètre : six pages représentatives du parcours acheteur, du point d'entrée au catalogue. Cinq critères de clarté, notés de 1 à 5. Le score global agrégé : 31 sur 100. À comparer à un seuil acceptable B2B de 60. Et un chiffre encore plus parlant : zéro porte d'entrée persona — aucun visiteur ne peut s'identifier à un parcours préconçu.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 13 — WORDCLOUD JARGON ================ -->
+<section data-state="wordcloud-state">
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>II · Analyse lexicale du jargon</span></div><div class="right">13</div></div>
+  <h2 style="margin-bottom: 4px;">78 % du vocabulaire est inaccessible aux non-experts.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Analyse de 180 occurrences terminologiques sur le corpus des 6 pages.</p>
+
+  <div class="wordcloud-wrap">
+    <svg id="wordcloud-svg"></svg>
+    <div class="wc-meta">
+      <div class="wc-stat">
+        <div class="big">78 %</div>
+        <div class="lbl">des termes centraux sans équivalent plain language disponible sur le site</div>
+      </div>
+      <div class="wc-stat" style="background: var(--lne-red);">
+        <div class="big" style="color: white;">180</div>
+        <div class="lbl">occurrences terminologiques recensées sur les 6 pages</div>
+      </div>
+      <div class="wc-quote">
+        « L'usage du jargon interne crée des barrières qui ralentissent <strong>tous</strong> les utilisateurs, indépendamment de leur niveau d'expertise. »
+        <cite>— NN/g, Plain Language Is for Everyone, Even Experts, 2019</cite>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    L'analyse lexicale est l'image la plus parlante de la Partie II. On a recensé environ 180 occurrences de termes spécialisés sur les six pages. 78 % d'entre eux n'ont aucune traduction plain language disponible sur le site. COFRAC, BIPM, raccordement métrologique, confirmation métrologique, incertitude de mesure — ce sont des mots opaques pour tout le monde sauf le métrologue expert. Et c'est confirmé par Nielsen Norman Group : le jargon ralentit TOUS les utilisateurs, même les experts.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 14 — HEATMAP ================ -->
+<section data-state="heatmap-state">
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>II · Heatmap 6 pages × 5 critères</span></div><div class="right">14</div></div>
+  <h2 style="margin-bottom: 4px;">Une domination du rouge sur l'ensemble du site.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Cliquez sur une cellule pour le détail. La navigation principale concentre les scores critiques.</p>
+
+  <div class="heatmap-wrap">
+    <svg id="heatmap-svg"></svg>
+    <div class="heat-legend">
+      <h4>Échelle de notation</h4>
+      <div class="heat-scale">
+        <div class="sw" style="background:#c8312f;">1</div>
+        <div class="sw" style="background:#e8722d;">2</div>
+        <div class="sw" style="background:#f3b62f;">3</div>
+        <div class="sw" style="background:#8cb33d;">4</div>
+        <div class="sw" style="background:#1c8a5b;">5</div>
+      </div>
+      <div style="color: var(--lne-grey-dark); font-size: .8em;">1 = critique · 5 = optimal</div>
+
+      <div id="heat-info">
+        <div class="pg">Sélectionnez une cellule</div>
+        <div class="cr">— Critère —</div>
+        <div class="score">—</div>
+        <div class="note">L'information détaillée s'affichera ici.</div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    La heatmap : 6 pages en lignes, 5 critères en colonnes. C'est rouge presque partout. La ligne la plus critique : la navigation principale, qui cumule 1 à 2 sur 5 sur tous les critères. C'est précisément la zone qui détermine si on reste ou si on part — et c'est notre point d'entrée le plus défaillant. Seule éclaircie : la fiche de formation individuelle, qui obtient 3 à 4 sur 5. Elle devient notre référence interne pour la refonte.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 15 — PERSONAS RADAR ================ -->
+<section data-state="personas-state">
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>II · Cartographie des 4 personas</span></div><div class="right">15</div></div>
+  <h2 style="margin-bottom: 4px;">Quatre personas. Un seul est servi.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Notation /10 sur cinq dimensions d'adéquation avec le site actuel. Cliquez sur un persona pour comparer.</p>
+
+  <div class="personas-wrap">
+    <div class="persona-switch" id="persona-switch">
+      <button class="persona-btn active" data-p="0">
+        <span class="pname">Métrologue expert</span>
+        <span class="pscore">Score moyen : 5,6 / 10</span>
+      </button>
+      <button class="persona-btn" data-p="1">
+        <span class="pname">RH Formation</span>
+        <span class="pscore">Score moyen : 2,4 / 10</span>
+      </button>
+      <button class="persona-btn" data-p="2">
+        <span class="pname">RH Client</span>
+        <span class="pscore">Score moyen : 2,0 / 10</span>
+      </button>
+      <button class="persona-btn" data-p="3">
+        <span class="pname">Direction</span>
+        <span class="pscore">Score moyen : 2,4 / 10</span>
+      </button>
+    </div>
+    <div class="radar-panel">
+      <canvas id="radar-canvas"></canvas>
+      <div class="radar-meta">
+        <div class="meta-card"><span class="lbl">Question centrale</span><span class="val" id="radar-question">— </span></div>
+        <div class="meta-card"><span class="lbl">Verdict</span><span class="val" id="radar-verdict">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    On a modélisé quatre personas et évalué leur adéquation avec le site actuel. Le métrologue expert s'en sort à peu près — il maîtrise le vocabulaire, donc il décode. Mais le RH Formation, qui est pourtant le prescripteur budgétaire principal, obtient 1/10 sur l'information financement — il n'y a aucune mention CPF, OPCO, Qualiopi visible. Le RH client n'a pas de parcours guidé. La direction n'a aucun cas client sectoriel pour justifier son investissement. Verdict : un seul persona sur quatre est correctement servi — celui qui en a le moins besoin.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 16 — PLAN D'AMÉLIORATION ================ -->
+<section data-state="actions-state">
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>II · Plan d'amélioration — 6 actions / 3 priorités</span></div><div class="right">16</div></div>
+  <h2 style="margin-bottom: 4px;">Six actions priorisées, toutes ancrées scientifiquement.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Sélectionnez une priorité pour voir les actions associées et leur fondement empirique.</p>
+
+  <div class="actions-wrap">
+    <div class="prio-switch" id="prio-switch">
+      <button class="prio-btn active" data-prio="1">
+        <span class="ptag">P1</span>
+        <span class="ptime">0 – 3 mois</span>
+      </button>
+      <button class="prio-btn" data-prio="2">
+        <span class="ptag">P2</span>
+        <span class="ptime">3 – 6 mois</span>
+      </button>
+      <button class="prio-btn" data-prio="3">
+        <span class="ptag">P3</span>
+        <span class="ptime">6 – 12 mois</span>
+      </button>
+    </div>
+    <div class="action-list" id="action-list"></div>
+  </div>
+
+  <aside class="notes">
+    Le plan se décline en six actions sur trois priorités temporelles. P1, 0 à 3 mois : la navigation par persona et la réécriture du hero en plain language — les deux gestes à plus fort retour. P2, 3 à 6 mois : on rend le financement visible et on introduit les tooltips de lexique. P3, 6 à 12 mois : trois cas clients sectoriels et la grille de niveaux. Chaque action est ancrée dans une référence scientifique — Sweller, Forrester, Cialdini, Edelman, Deci & Ryan. On ne propose rien d'arbitraire. Je passe la parole à Kessy-Rose.
+  </aside>
+</section>
+
+<!-- ================ DIVIDER — PART III ================ -->
+<section class="divider">
+  <div class="part-num">Partie III</div>
+  <h1>Plan de communication<br>digitale.</h1>
+  <div class="speaker">Présenté par <span>Kessy-Rose</span> & <span>Louise</span></div>
+  <aside class="notes">Transition : Partie III — le plan de communication digitale. Kessy-Rose présente les objectifs, Louise les leviers.</aside>
+</section>
+
+<!-- ================ SLIDE 18 — COGNITIF / AFFECTIF / CONATIF ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.1 · Objectifs — modèle cognitif-affectif-conatif</span></div><div class="right">18</div></div>
+  <h2 style="margin-bottom: 4px;">Trois étapes, du plus rationnel au plus comportemental.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Le modèle cognitif-affectif-conatif structure les objectifs en répondant à chaque problème identifié par le client.</p>
+
+  <div class="cac-chain">
+    <div class="cac-step">
+      <div class="step-num">Étape 01</div>
+      <h4>Cognitif</h4>
+      <div class="verb">Faire savoir → notoriété</div>
+      <ul>
+        <li>Travailler la notoriété assistée et spontanée sur les publics B2B ciblés</li>
+        <li>Rendre l'offre <strong>immédiatement compréhensible</strong> (quelles formations, pour qui, pour quels métiers)</li>
+        <li>Atteindre le <strong>top of mind</strong> dans les niches : métrologie, essais, certification, sécurité industrielle</li>
+        <li><em>Levier principal :</em> refonte page web, SEO mots-clés techniques, présence LinkedIn</li>
+      </ul>
+    </div>
+    <div class="cac-step">
+      <div class="step-num">Étape 02</div>
+      <h4>Affectif</h4>
+      <div class="verb">Faire aimer → préférence + confiance</div>
+      <ul>
+        <li>Valoriser la <strong>légitimité scientifique et institutionnelle</strong> — apprendre auprès de ceux qui font les normes</li>
+        <li>Mettre en avant la qualité pédagogique : formateurs praticiens, ancrage terrain, certifiantes</li>
+        <li>Créer la réassurance des décideurs : témoignages, études de cas, <strong>certification Qualiopi</strong></li>
+        <li><em>Levier principal :</em> content marketing, LinkedIn, email storytelling</li>
+      </ul>
+    </div>
+    <div class="cac-step">
+      <div class="step-num">Étape 03</div>
+      <h4>Conatif</h4>
+      <div class="verb">Faire agir → conversion</div>
+      <ul>
+        <li>Faciliter le passage à l'acte sur le site : <strong>CTA clairs</strong>, formulaires simplifiés, catalogue téléchargeable</li>
+        <li>Retargeting des visiteurs n'ayant pas converti</li>
+        <li>Formats d'entrée à faible engagement : webinars gratuits, sessions découverte</li>
+        <li>Activer la base clients existants — les clients d'essais et certification sont des prospects naturels formation</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Kessy-Rose prend la parole. Le modèle cognitif-affectif-conatif est notre grille de lecture des objectifs. Trois étapes successives : faire savoir, faire aimer, faire agir. Sur le cognitif, on travaille la notoriété — la priorité 1 vu que l'offre est aujourd'hui invisible. Sur l'affectif, on capitalise sur la légitimité institutionnelle pour créer de la préférence. Sur le conatif, on facilite le passage à l'action et on active la base clients existants — qui est un actif énorme et sous-exploité.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 19 — TABLEAU DE COHÉRENCE ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.1 · Synthèse — objectifs × messages × leviers</span></div><div class="right">19</div></div>
+  <h2 style="margin-bottom: 4px;">À chaque objectif, son message et son levier prioritaire.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Tableau de cohérence stratégique — base de tout brief de production.</p>
+
+  <table class="cohtable">
+    <thead><tr><th style="width: 18%;">Objectif</th><th style="width: 47%;">Message clé</th><th>Levier digital prioritaire</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="obj">Cognitif</td>
+        <td class="msg">« Le LNE forme aussi : découvrez nos formations techniques. »</td>
+        <td class="lev">Refonte web · SEO mots-clés métier · LinkedIn</td>
+      </tr>
+      <tr>
+        <td class="obj">Affectif</td>
+        <td class="msg">« Formez-vous avec les experts qui font les normes. »</td>
+        <td class="lev">Content marketing · Webinaires · Témoignages</td>
+      </tr>
+      <tr>
+        <td class="obj">Conatif</td>
+        <td class="msg">« Inscrivez-vous · Demandez un devis. »</td>
+        <td class="lev">SEA Google Ads · Emailing segmenté · Landing pages optimisées</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 28px; background: var(--lne-grey); padding: 18px 24px; font-size: .9em; border-left: 4px solid var(--lne-red);">
+    <strong style="color: var(--lne-blue); font-family:'Barlow Condensed'; font-size: 1.1em;">Principe directeur —</strong>
+    <span style="color: var(--lne-grey-dark);">Chaque pièce de communication produite doit pouvoir être ramenée à <strong>un</strong> objectif, <strong>un</strong> message clé et <strong>un</strong> levier prioritaire de ce tableau.</span>
+  </div>
+
+  <aside class="notes">
+    Voilà la synthèse opérationnelle. Trois objectifs, trois messages clés, trois grandes familles de leviers. Cognitif : « Le LNE forme aussi. » Affectif : « Formez-vous avec ceux qui font les normes. » Conatif : « Inscrivez-vous, demandez un devis. » C'est volontairement très court — c'est cette discipline qui permet à toute production de communication de rester alignée. Si on ne peut pas ramener une pièce de com à ce tableau, c'est qu'elle ne sert pas la stratégie. Je passe à Louise pour les leviers.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 20 — MIX DIGITAL OVERVIEW ================ -->
+<section data-state="levers-state">
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.2 · Mix digital — vue d'ensemble</span></div><div class="right">20</div></div>
+  <h2 style="margin-bottom: 4px;">Cinq leviers à activer en parallèle.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Filtre par cible : voyez quels leviers sont prioritaires pour chaque persona du triptyque B2B.</p>
+
+  <div class="persona-filter" id="lever-filter">
+    <button class="active" data-target="all">Toutes cibles</button>
+    <button data-target="acheteur">Acheteur (RH/DRH)</button>
+    <button data-target="prescripteur">Prescripteur (qualité)</button>
+    <button data-target="utilisateur">Utilisateur (métrologue)</button>
+  </div>
+
+  <div class="levers-grid" id="levers-grid">
+    <div class="lever" data-tags="acheteur,prescripteur,utilisateur">
+      <div class="lletter">A</div>
+      <h4>Refonte site web</h4>
+      <p>Pages dédiées par secteur. Identification rapide des enjeux métier. Formations présentées par bénéfice opérationnel.</p>
+      <div class="tags"><span>Acheteur</span><span>Prescripteur</span><span>Utilisateur</span></div>
+    </div>
+    <div class="lever" data-tags="prescripteur,utilisateur">
+      <div class="lletter">B</div>
+      <h4>SEO &amp; SEA</h4>
+      <p>La niche technique devient un avantage : requêtes ciblées, faible saturation concurrentielle.</p>
+      <div class="tags"><span>Prescripteur</span><span>Utilisateur</span></div>
+    </div>
+    <div class="lever" data-tags="acheteur,prescripteur">
+      <div class="lletter">C</div>
+      <h4>Content marketing</h4>
+      <p>Articles, livres blancs, études de cas, webinaires. Traduire l'expertise sans simplifier la rigueur.</p>
+      <div class="tags"><span>Acheteur</span><span>Prescripteur</span></div>
+    </div>
+    <div class="lever" data-tags="acheteur,prescripteur">
+      <div class="lletter">D</div>
+      <h4>LinkedIn B2B</h4>
+      <p>Prises de parole d'experts, contenus courts, analyses sectorielles. Canal numéro un B2B.</p>
+      <div class="tags"><span>Acheteur</span><span>Prescripteur</span></div>
+    </div>
+    <div class="lever" data-tags="acheteur">
+      <div class="lletter">E</div>
+      <h4>Email marketing</h4>
+      <p>Réactiver la base clients existante via newsletters et invitations webinars segmentées.</p>
+      <div class="tags"><span>Acheteur</span></div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Louise prend la parole. Cinq leviers à activer en parallèle. J'ai prévu un filtre interactif par persona — vous voyez ainsi pour chaque cible du triptyque quels leviers sont prioritaires. Et on voit déjà un point intéressant : tous les leviers ne servent pas tous les profils. Le site et le content marketing sont transversaux. Le SEO sert d'abord prescripteur et utilisateur. L'email sert principalement l'acheteur. Je vais maintenant détailler chaque levier.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 21 — LEVIER A : SITE ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.2 · Levier A — Refonte du site web</span></div><div class="right">21</div></div>
+  <h2 style="margin-bottom: 4px;">Repositionner l'offre dans une logique centrée utilisateur.</h2>
+
+  <div class="lever-focus">
+    <div class="left">
+      <div class="ltag">Levier A</div>
+      <h3>Refonte du site web.</h3>
+      <p class="quote">Le site est le premier point de contact entre le LNE et ses prospects — il doit transformer une offre perçue comme complexe en solution immédiatement compréhensible.</p>
+      <div class="stat">78 %</div>
+      <div class="stat-label">des acheteurs B2B abandonnent un site qui ne montre pas dates et financement en moins de 3 clics (Docebo, 2024).</div>
+    </div>
+    <div class="right">
+      <h4>Construire des pages dédiées par secteur ou problématique métier</h4>
+      <ul>
+        <li><strong>Permettre l'identification rapide</strong> du visiteur à ses enjeux professionnels</li>
+        <li>Présenter chaque formation de manière concrète : <em>à qui elle s'adresse, quelles compétences elle développe, quels bénéfices opérationnels, dans quels contextes elle est utile</em></li>
+        <li><strong>Logique commerciale</strong>, pas institutionnelle : parcours acheteur, filtres avancés, CTA visibles</li>
+        <li>Cohérence avec la Partie II : <strong>plain language</strong> dans les titres, financement (CPF/OPCO/Qualiopi) en haut de fiche, lexique inline pour les termes techniques</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Levier A : la refonte du site. C'est le levier le plus structurant — toute la suite repose dessus. Le principe : on quitte une logique institutionnelle pour adopter une logique commerciale, centrée utilisateur. Pages dédiées par secteur ou problématique métier, présentation concrète de chaque formation, financement visible, lexique inline. Et c'est totalement cohérent avec ce que Vojin a présenté en Partie II — la refonte donne du sens au plan d'amélioration.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 22 — LEVIER B : SEO/SEA ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.2 · Levier B — SEO/SEA</span></div><div class="right">22</div></div>
+  <h2 style="margin-bottom: 4px;">Faire de la technicité un avantage concurrentiel.</h2>
+
+  <div class="lever-focus">
+    <div class="left">
+      <div class="ltag">Levier B</div>
+      <h3>SEO / SEA.</h3>
+      <p class="quote">Les requêtes techniques sont ciblées et concurrentiellement moins saturées. La niche devient un avantage SEO majeur.</p>
+      <div class="stat">×3</div>
+      <div class="stat-label">le SEO sur requêtes longues techniques génère en moyenne 3x plus de leads qualifiés que le SEA généraliste sur le segment B2B formation.</div>
+    </div>
+    <div class="right">
+      <h4>Stratégie de mots-clés ciblés</h4>
+      <ul>
+        <li>Se positionner sur des requêtes précises : <strong>« formation métrologie laboratoire »</strong>, <strong>« formation normes ISO »</strong>, <strong>« formation instrumentation et mesure »</strong></li>
+        <li>Attirer des professionnels <strong>déjà qualifiés</strong> et activement en recherche</li>
+        <li>Là où les concurrents élargissent leur discours, <strong>le LNE capitalise sur son expertise pointue</strong></li>
+        <li>SEA en complément : Google Ads sur les requêtes les plus intentionnistes uniquement (conatif)</li>
+      </ul>
+      <p style="margin-top: 14px; font-size: .85em; color: var(--lne-grey-dark); font-style: italic;">Le NIST a construit une autorité SEO mondiale par le volume d'articles gratuits. Modèle directement transposable.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Levier B : SEO et SEA. Le contre-intuitif ici, c'est que la niche technique du LNE — qui est perçue comme un frein grand public — devient un atout en SEO. Les requêtes "formation métrologie laboratoire" ou "formation ISO 17025" ne sont pas saturées. Ce sont des recherches faites par des professionnels déjà qualifiés et en intention d'achat. Le NIST aux États-Unis a construit toute son autorité par cette logique. C'est directement transposable.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 23 — LEVIER C : CONTENT MARKETING ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.2 · Levier C — Content marketing</span></div><div class="right">23</div></div>
+  <h2 style="margin-bottom: 4px;">Valoriser l'expertise par la pédagogie.</h2>
+
+  <div class="lever-focus">
+    <div class="left">
+      <div class="ltag">Levier C</div>
+      <h3>Content marketing.</h3>
+      <p class="quote">Ne pas vulgariser au détriment de la rigueur. Traduire l'expertise — pas la diluer.</p>
+      <div class="stat">73 %</div>
+      <div class="stat-label">des organisations B2B qui réussissent leur content ont une ligne éditoriale documentée — contre 23 % pour les autres (CMI, 2025).</div>
+    </div>
+    <div class="right">
+      <h4>Quatre formats à structurer</h4>
+      <ul>
+        <li><strong>Articles de blog &amp; veille réglementaire</strong> (40 %) — mises à jour ISO/OIML, marquage CE, directives européennes</li>
+        <li><strong>Livres blancs &amp; études de cas</strong> (20 %) — preuve sociale documentée, cas clients anonymisés par secteur</li>
+        <li><strong>Webinaires mensuels</strong> (25 %) — modèle NPL : 300 à 1 000 inscrits par session sur les normes émergentes</li>
+        <li><strong>Témoignages &amp; portraits</strong> (15 %) — formateurs praticiens, retours d'expérience terrain, vidéos courtes</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Levier C : content marketing. Le content est ce qui fait la bascule entre une présence digitale subie et une présence digitale qui génère de l'autorité. Quatre formats à structurer, avec un mix précis : 40 % de veille réglementaire — c'est le pilier expertise. 20 % de preuve sociale. 25 % de webinars qui sont notre meilleur outil de génération de leads qualifiés. 15 % de témoignages qui humanisent l'institution. Et surtout : une ligne éditoriale documentée — c'est ce qui distingue les 73 % de réussites des autres selon le CMI.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 24 — LEVIER D : LINKEDIN ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.2 · Levier D — LinkedIn</span></div><div class="right">24</div></div>
+  <h2 style="margin-bottom: 4px;">Installer le LNE comme référence experte B2B.</h2>
+
+  <div class="lever-focus">
+    <div class="left">
+      <div class="ltag">Levier D</div>
+      <h3>LinkedIn B2B.</h3>
+      <p class="quote">Dans les secteurs spécialisés, la confiance précède le choix. LinkedIn est l'outil de construction d'autorité par excellence.</p>
+      <div class="stat">+40k</div>
+      <div class="stat-label">abonnés sur la Showcase Page Bureau Veritas Training. Aucune Showcase LNE Formation aujourd'hui.</div>
+    </div>
+    <div class="right">
+      <h4>Trois dispositifs à activer</h4>
+      <ul>
+        <li><strong>Showcase Page « LNE Academy »</strong> dédiée : structurée, alimentée 3 à 5 fois/semaine, ligne éditoriale claire</li>
+        <li><strong>Employee advocacy</strong> : les experts LNE postent en leur nom propre — humanise la légitimité scientifique (modèle NPL)</li>
+        <li><strong>Prises de parole régulières</strong> : analyses sectorielles, retours d'expérience terrain, contenus pédagogiques courts</li>
+        <li>Cible : décideurs (acheteur RH) ET prescripteurs (responsables qualité) — couverture du triptyque B2B</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Levier D : LinkedIn. C'est le canal numéro un B2B pour toucher décideurs et prescripteurs. Trois dispositifs à activer en parallèle : une Showcase Page dédiée "LNE Academy" — Bureau Veritas a 40 000 abonnés sur la sienne, on part de zéro. L'employee advocacy — faire poster les experts LNE en leur nom propre, ce qui humanise la légitimité scientifique, c'est ce que fait NPL et ça fonctionne. Et des prises de parole régulières sur les sujets sectoriels. LinkedIn couvre deux des trois cibles du triptyque.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 25 — LEVIER E : EMAIL ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>III.2 · Levier E — Email marketing</span></div><div class="right">25</div></div>
+  <h2 style="margin-bottom: 4px;">Réactiver un réseau déjà existant.</h2>
+
+  <div class="lever-focus">
+    <div class="left">
+      <div class="ltag">Levier E</div>
+      <h3>Email marketing.</h3>
+      <p class="quote">Le LNE dispose d'une base clients qualifiée construite par ses activités historiques d'essais et de certification — aujourd'hui inexploitée pour la formation.</p>
+      <div class="stat">36:1</div>
+      <div class="stat-label">ROI moyen de l'email marketing B2B — le canal au meilleur rapport coût/conversion (DMA, 2023).</div>
+    </div>
+    <div class="right">
+      <h4>Activation et synergies inter-métiers</h4>
+      <ul>
+        <li><strong>Newsletters mensuelles</strong> ciblées par secteur d'activité du client</li>
+        <li><strong>Invitations webinars</strong> et journées techniques — relance des leads non convertis</li>
+        <li><strong>Recommandations de formations</strong> personnalisées selon l'historique d'achat (essais, certif, étalonnage)</li>
+        <li><strong>Synergies inter-métiers</strong> : les clients d'essais et de certification sont des prospects naturels pour la formation</li>
+      </ul>
+      <p style="margin-top: 14px; font-size: .85em; color: var(--lne-grey-dark); font-style: italic;">L'email marketing alimente directement l'objectif conatif — la conversion finale.</p>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Levier E : email marketing. C'est l'actif le plus sous-exploité du LNE. La base de données clients construite par les activités d'essais et de certification est massive et qualifiée — et personne ne lui propose de formations. Newsletters segmentées, invitations webinars, recommandations selon l'historique d'achat. Le ROI moyen de l'email B2B est de 36 pour 1 — c'est de très loin le meilleur canal en rapport coût/conversion. Et au passage, ça crée des synergies entre les différents métiers du LNE.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 26 — RECOMMANDATION PHARE ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>Recommandation phare</span></div><div class="right">26</div></div>
+  <div class="brand-reveal">
+    <div class="topword">Recommandation phare</div>
+    <div class="brand-logo">
+      <span class="lne">LNE</span>
+      <span class="bar"></span>
+      <span class="academy">Academy</span>
+    </div>
+    <div class="promise">« La formation par ceux qui font la confiance industrielle. »</div>
+
+    <div style="margin-top: 36px; color: var(--lne-grey-dark); font-size: .95em; max-width: 70%; margin-left: auto; margin-right: auto;">
+      <strong style="color: var(--lne-blue);">Pas un geste cosmétique.</strong> Le prérequis sans lequel aucun des cinq leviers ne peut fonctionner. La marque produit ouvre l'activation des six éléments du standard de marché.
+    </div>
+
+    <div class="six">
+      <div>Sub-brand Academy</div>
+      <div>Sous-domaine dédié</div>
+      <div>Double entrée catalogue</div>
+      <div>Dispositif éditorial pull</div>
+      <div>LinkedIn structuré</div>
+      <div>Preuve sociale</div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Tout ce qu'on a présenté pendant 18 minutes converge ici. Recommandation phare : créer la marque « LNE Academy ». Promesse : « La formation par ceux qui font la confiance industrielle. » Ce n'est pas un geste cosmétique. C'est le prérequis. Sans marque produit, on ne peut pas activer le standard de marché que tous les concurrents matures ont activé. Avec elle, les six éléments deviennent accessibles — et chacun des cinq leviers de Louise prend son sens.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 27 — ROADMAP ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>Roadmap d'activation — 3 horizons</span></div><div class="right">27</div></div>
+  <h2 style="margin-bottom: 4px;">Une feuille de route en trois horizons.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Séquencement pragmatique des chantiers — alignement avec le plan d'amélioration de la Partie II.</p>
+
+  <div class="timeline">
+    <div class="timeline-row">
+      <div class="tl-card">
+        <div class="dot"></div>
+        <div class="when">P1 · 0 – 3 mois</div>
+        <div class="what">Poser les fondations</div>
+        <ul>
+          <li>Naming & charte LNE Academy</li>
+          <li>Showcase LinkedIn dédiée</li>
+          <li>Hero site en plain language</li>
+          <li>Navigation par persona</li>
+        </ul>
+      </div>
+      <div class="tl-card p2">
+        <div class="dot"></div>
+        <div class="when">P2 · 3 – 6 mois</div>
+        <div class="what">Activer le pull</div>
+        <ul>
+          <li>1er webinar mensuel récurrent</li>
+          <li>Financement visible (CPF/OPCO)</li>
+          <li>Lexique inline (tooltip)</li>
+          <li>Campagne email base existante</li>
+        </ul>
+      </div>
+      <div class="tl-card p3">
+        <div class="dot"></div>
+        <div class="when">P3 · 6 – 12 mois</div>
+        <div class="what">Industrialiser la preuve</div>
+        <ul>
+          <li>3 cas clients sectoriels (santé/industrie/agro)</li>
+          <li>Grille de niveaux par parcours</li>
+          <li>Employee advocacy LinkedIn</li>
+          <li>Programme micro-certifications</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <aside class="notes">
+    La roadmap d'activation, en trois horizons. P1 : poser les fondations — naming, charte, Showcase LinkedIn, hero du site refait en plain language. Ce sont les gestes qui débloquent tout le reste. P2 : activer le pull — premier webinar mensuel récurrent, financement visible, lexique inline, première campagne email sur la base existante. P3 : industrialiser la preuve — cas clients sectoriels, grille de niveaux, employee advocacy, micro-certifications. Trois horizons, douze livrables, parfaitement alignés avec le plan d'amélioration de la Partie II.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 28 — SOURCES ================ -->
+<section>
+  <div class="slide-marker"><div class="left"><span class="brand">LNE ACADEMY</span><span>Sources mobilisées</span></div><div class="right">28</div></div>
+  <h2 style="margin-bottom: 4px;">Sources mobilisées.</h2>
+  <p style="color: var(--lne-grey-dark); font-size: .95em;">Toutes les recommandations sont ancrées dans des références scientifiques ou sectorielles validées.</p>
+
+  <div class="sources-grid">
+    <div class="sources-col">
+      <h4>Sciences cognitives & UX</h4>
+      <ul>
+        <li><strong>Sweller</strong> (1988) ; Sweller, Van Merriënboer & Paas (1998), <em>Educational Psychology Review</em></li>
+        <li><strong>Miller</strong> (1956), <em>Psychological Review</em> — 7 ± 2</li>
+        <li><strong>Simon</strong> (1956) — satisficing</li>
+        <li><strong>Kahneman</strong> (2011), <em>Thinking, Fast and Slow</em></li>
+        <li><strong>Nielsen</strong> (1994, 2008) ; Loranger / NN/g (2019)</li>
+        <li><strong>Redish</strong> (2012), <em>Letting Go of the Words</em></li>
+        <li><strong>Lindgaard et al.</strong> (2006), <em>Behaviour & IT</em> — 50 ms</li>
+        <li><strong>Kincaid et al.</strong> (1975) — Flesch-Kincaid</li>
+        <li><strong>Guo et al.</strong> (2025), <em>arXiv:2505.01980</em> — n=4563</li>
+      </ul>
+    </div>
+    <div class="sources-col">
+      <h4>Comportement d'achat B2B</h4>
+      <ul>
+        <li><strong>Forrester Research</strong> (2024), <em>The State of Business Buying</em></li>
+        <li><strong>Gartner</strong> / Adamson et al. (2015), <em>The Challenger Customer</em></li>
+        <li><strong>Gartner</strong> B2B Buying Journey (2023)</li>
+        <li><strong>Influ2</strong> (2026) — buying committee</li>
+        <li><strong>Edelman</strong> (2023) — B2B Thought Leadership Impact Study</li>
+        <li><strong>Cialdini</strong> (1984), <em>Influence</em></li>
+        <li><strong>Deci & Ryan</strong> (1985) — auto-détermination</li>
+        <li><strong>Kotler & Keller</strong> (2022), <em>Marketing Management</em>, 16<sup>e</sup> éd.</li>
+      </ul>
+    </div>
+    <div class="sources-col">
+      <h4>Marché formation & digital</h4>
+      <ul>
+        <li><strong>Cegos</strong>, Baromètre 2024-2025</li>
+        <li><strong>Docebo</strong>, Learning Trends 2025</li>
+        <li><strong>Content Marketing Institute</strong> (2025)</li>
+        <li><strong>LinkedIn Business</strong> / B2B Institute (2022-2023)</li>
+        <li><strong>DMA</strong> (2023) — ROI email 36:1</li>
+        <li><strong>Google / Lecinski</strong> (2011) — ZMOT</li>
+        <li><strong>McKinsey</strong> (2020) — B2B Digital Inflection</li>
+        <li><strong>Sites & catalogues</strong> : NPL, PTB, NIST, VSL, TÜV SÜD, SGS, Bureau Veritas, ISO Academy, EURAMET, BIPM</li>
+        <li><strong>Entretien</strong> Thibaut Blachère (LNE), mai 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Nos sources. Trois colonnes : les sciences cognitives et l'UX qui fondent la Partie II, le comportement d'achat B2B qui fonde le triptyque utilisé partout, et le marché formation et digital qui fonde le plan de communication. À ça s'ajoutent les sites et catalogues benchmark, et bien sûr l'entretien de cadrage avec Thibaut Blachère. On a fait le choix de citer plus de 25 sources : c'est le marqueur de la posture conseil — chaque recommandation est ancrée.
+  </aside>
+</section>
+
+<!-- ================ SLIDE 29 — MERCI ================ -->
+<section class="thanks">
+  <h1>Merci.<br><span class="red">Q &amp; R.</span></h1>
+  <div class="qa">Le moment des questions.</div>
+  <div class="team-line">
+    <span>Jacques</span><span>·</span><span>Enzo</span><span>·</span><span>Vojin</span><span>·</span><span>Kessy-Rose</span><span>·</span><span>Louise</span>
+  </div>
+  <aside class="notes">
+    Merci. Nous sommes prêts à répondre à vos questions.
+  </aside>
+</section>
+
+</div>
+</div>
+
+<!-- ===== Reveal.js + libs ===== -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<script>
+const deck = new Reveal({
+  hash: true,
+  slideNumber: 'c/t',
+  controlsTutorial: false,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  width: 1280,
+  height: 800,
+  margin: 0.02,
+  minScale: 0.4,
+  maxScale: 1.6,
+  plugins: [ RevealNotes ]
+});
+deck.initialize();
+
+// ============================================
+//   WORD CLOUD — slide 13
+// ============================================
+const wordcloudTerms = [
+  { t: "COFRAC", w: 38, expert: true },
+  { t: "incertitude de mesure", w: 34, expert: true },
+  { t: "raccordement métrologique", w: 30, expert: true },
+  { t: "confirmation métrologique", w: 28, expert: true },
+  { t: "BIPM", w: 26, expert: true },
+  { t: "Euramet", w: 22, expert: true },
+  { t: "étalonnage", w: 32, expert: true },
+  { t: "ISO 17025", w: 24, expert: true },
+  { t: "OIML", w: 20, expert: true },
+  { t: "traçabilité", w: 22, expert: true },
+  { t: "marquage CE", w: 18, expert: true },
+  { t: "métrologie légale", w: 18, expert: true },
+  { t: "tolérance", w: 16, expert: true },
+  { t: "qualification d'instruments", w: 18, expert: true },
+  { t: "validation analytique", w: 16, expert: true },
+  { t: "accréditation", w: 20, expert: true },
+  { t: "instrumentation", w: 18, expert: true },
+  { t: "essais inter-laboratoires", w: 18, expert: true },
+  { t: "normes ISO", w: 22, expert: true },
+  { t: "Qualiopi", w: 14, expert: false },
+  { t: "CPF", w: 12, expert: false },
+  { t: "OPCO", w: 12, expert: false },
+  { t: "formation", w: 16, expert: false },
+  { t: "compétence", w: 14, expert: false },
+];
+
+function drawWordCloud() {
+  const svg = d3.select("#wordcloud-svg");
+  svg.selectAll("*").remove();
+  const node = document.getElementById("wordcloud-svg");
+  if (!node) return;
+  const W = node.clientWidth || 700;
+  const H = node.clientHeight || 420;
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+
+  // simple packing: place words on a grid by descending weight
+  const sorted = [...wordcloudTerms].sort((a,b)=>b.w-a.w);
+  const placed = [];
+  const cx = W/2, cy = H/2;
+  sorted.forEach((d,i) => {
+    const fontSize = 12 + d.w * 0.9;
+    const angle = i * 0.6;
+    const radius = 18 + i * 14;
+    let x = cx + radius * Math.cos(angle);
+    let y = cy + radius * Math.sin(angle);
+    // crude bounds keep inside
+    const textWidth = d.t.length * fontSize * 0.45;
+    if (x - textWidth/2 < 8) x = textWidth/2 + 8;
+    if (x + textWidth/2 > W - 8) x = W - textWidth/2 - 8;
+    if (y - fontSize < 14) y = fontSize + 14;
+    if (y + fontSize > H - 8) y = H - fontSize - 8;
+    placed.push({...d, x, y, fontSize});
+  });
+
+  svg.selectAll("text")
+    .data(placed)
+    .enter()
+    .append("text")
+    .attr("x", d=>d.x)
+    .attr("y", d=>d.y)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Barlow Condensed, sans-serif")
+    .attr("font-weight", d => d.w > 24 ? 800 : 600)
+    .attr("font-size", d => d.fontSize)
+    .attr("fill", d => d.expert ? "#003A70" : "#E6192D")
+    .attr("opacity", 0)
+    .text(d => d.t)
+    .transition()
+    .duration(800)
+    .delay((d,i) => i*40)
+    .attr("opacity", d => d.expert ? 0.92 : 1);
+}
+
+// ============================================
+//   HEATMAP — slide 14
+// ============================================
+const heatPages = [
+  { id: "P1", short: "Accueil", full: "Page d'accueil" },
+  { id: "P2", short: "Catalogue", full: "Catalogue formation" },
+  { id: "P3", short: "Fiche métier", full: "Fiche « Le métier de métrologue »" },
+  { id: "P4", short: "Fiche formation", full: "Fiche « Pratiques de base en métrologie »" },
+  { id: "P5", short: "Étalonnage", full: "Page Métrologie — Étalonnage" },
+  { id: "P6", short: "Certification", full: "Page Certification" },
+];
+const heatCriteria = [
+  { id: "C1", short: "Titre", full: "Clarté du titre" },
+  { id: "C2", short: "Vocab.", full: "Vocabulaire accessible" },
+  { id: "C3", short: "Bénéfices", full: "Explicitation des bénéfices" },
+  { id: "C4", short: "CTA", full: "Visibilité des CTA" },
+  { id: "C5", short: "Non-experts", full: "Adaptation aux non-experts" },
+];
+// scores 1-5
+const heatScores = [
+  [2,1,1,1,1], // accueil
+  [2,2,2,2,1], // catalogue
+  [3,2,2,2,2], // fiche métier
+  [4,3,4,4,3], // fiche formation (meilleure)
+  [2,2,2,2,1], // étalonnage
+  [2,1,2,2,1], // certification
+];
+const heatNotes = {
+  "0,0":"Titre institutionnel, sans bénéfice utilisateur.",
+  "0,1":"Jargon dominant dès le hero.",
+  "0,2":"Bénéfices invisibles — orientation entreprise/institutionnelle.",
+  "0,3":"CTA noyés, hiérarchie visuelle faible.",
+  "0,4":"Aucune porte d'entrée par persona.",
+  "1,0":"Titre « Catalogue formation » — descriptif, pas vendeur.",
+  "1,1":"Termes techniques sans tooltip.",
+  "1,2":"Listing thématique sans gain pédagogique explicite.",
+  "1,3":"CTA présents mais peu différenciés.",
+  "1,4":"Filtres techniques uniquement.",
+  "2,0":"Titre clair pour expert, opaque pour non-spécialiste.",
+  "2,1":"Vocabulaire métier dense.",
+  "2,2":"Bénéfices implicites — peu reformulés.",
+  "2,3":"CTA secondaires peu visibles.",
+  "2,4":"Pas d'angle métier RH/direction.",
+  "3,0":"Titre clair, formation explicite.",
+  "3,1":"Vocabulaire mixte, accessible.",
+  "3,2":"Objectifs pédagogiques formulés.",
+  "3,3":"CTA d'inscription visible.",
+  "3,4":"Adaptation correcte mais financement absent.",
+  "4,0":"Titre institutionnel, peu directif.",
+  "4,1":"Champ lexical technique pur.",
+  "4,2":"Bénéfices absents — explication descriptive.",
+  "4,3":"CTA noyés dans la navigation institutionnelle.",
+  "4,4":"Aucun pont vers les non-experts.",
+  "5,0":"Titre clair institutionnel.",
+  "5,1":"Vocabulaire spécialisé certification.",
+  "5,2":"Bénéfices peu reformulés en plain language.",
+  "5,3":"CTA peu visibles.",
+  "5,4":"Adaptation absente."
+};
+
+function colorScale(v) {
+  return ["#c8312f","#e8722d","#f3b62f","#8cb33d","#1c8a5b"][v-1];
+}
+
+function drawHeatmap() {
+  const svg = d3.select("#heatmap-svg");
+  svg.selectAll("*").remove();
+  const node = document.getElementById("heatmap-svg");
+  if (!node) return;
+  const W = node.clientWidth || 700;
+  const H = 460;
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+
+  const leftPad = 160, topPad = 70;
+  const cellW = (W - leftPad - 20) / heatCriteria.length;
+  const cellH = (H - topPad - 20) / heatPages.length;
+
+  // Column headers
+  svg.selectAll(".colhdr")
+    .data(heatCriteria)
+    .enter().append("text")
+    .attr("class", "colhdr")
+    .attr("x", (d,i) => leftPad + i*cellW + cellW/2)
+    .attr("y", topPad - 18)
+    .attr("text-anchor","middle")
+    .attr("font-family","Barlow Condensed, sans-serif")
+    .attr("font-weight",700)
+    .attr("font-size", 13)
+    .attr("fill","#1a2332")
+    .text(d => d.short.toUpperCase());
+
+  // Row headers
+  svg.selectAll(".rowhdr")
+    .data(heatPages)
+    .enter().append("text")
+    .attr("class","rowhdr")
+    .attr("x", leftPad - 12)
+    .attr("y", (d,i) => topPad + i*cellH + cellH/2 + 4)
+    .attr("text-anchor","end")
+    .attr("font-family","Barlow Condensed, sans-serif")
+    .attr("font-weight",600)
+    .attr("font-size", 13)
+    .attr("fill","#1a2332")
+    .text(d => d.short);
+
+  // Cells
+  const cells = [];
+  heatScores.forEach((row,i) => row.forEach((v,j) => cells.push({i,j,v})));
+
+  svg.selectAll(".cell")
+    .data(cells)
+    .enter().append("rect")
+    .attr("class","cell")
+    .attr("x", d => leftPad + d.j*cellW + 2)
+    .attr("y", d => topPad + d.i*cellH + 2)
+    .attr("width", cellW - 4)
+    .attr("height", cellH - 4)
+    .attr("fill", d => colorScale(d.v))
+    .attr("opacity", 0)
+    .style("cursor","pointer")
+    .on("click", (e,d) => updateHeatInfo(d))
+    .on("mouseenter", (e,d) => updateHeatInfo(d))
+    .transition()
+    .duration(500)
+    .delay((d,i) => i*25)
+    .attr("opacity", 0.95);
+
+  svg.selectAll(".cellval")
+    .data(cells)
+    .enter().append("text")
+    .attr("class","cellval")
+    .attr("x", d => leftPad + d.j*cellW + cellW/2)
+    .attr("y", d => topPad + d.i*cellH + cellH/2 + 7)
+    .attr("text-anchor","middle")
+    .attr("font-family","Barlow Condensed, sans-serif")
+    .attr("font-weight",800)
+    .attr("font-size", 20)
+    .attr("fill","#fff")
+    .attr("opacity", 0)
+    .text(d => d.v)
+    .transition()
+    .duration(500)
+    .delay((d,i) => i*25 + 300)
+    .attr("opacity", 0.98);
+}
+
+function updateHeatInfo(d) {
+  const info = document.getElementById("heat-info");
+  if (!info) return;
+  const note = heatNotes[`${d.i},${d.j}`] || "—";
+  info.innerHTML = `
+    <div class="pg">${heatPages[d.i].full}</div>
+    <div class="cr">${heatCriteria[d.j].full}</div>
+    <div class="score">${d.v} / 5</div>
+    <div class="note">${note}</div>
+  `;
+}
+
+// ============================================
+//   PERSONAS RADAR — slide 15
+// ============================================
+const personasData = [
+  {
+    name: "Métrologue expert",
+    question: "« Est-ce rigoureux scientifiquement ? »",
+    verdict: "Bien servi sur le vocabulaire (8/10) — gap : pas de grille de niveaux ni de parcours progressif.",
+    scores: [7, 8, 4, 5, 4]
+  },
+  {
+    name: "RH Formation",
+    question: "« Est-ce finançable CPF / OPCO / Qualiopi ? »",
+    verdict: "Non servi — score 1/10 sur l'information financement, totalement absente du site.",
+    scores: [3, 2, 3, 3, 1]
+  },
+  {
+    name: "RH Client",
+    question: "« Comment je commande, qui contacter ? »",
+    verdict: "Non servi — pas de parcours guidé, aucune logique commerciale B2B.",
+    scores: [2, 1, 2, 3, 2]
+  },
+  {
+    name: "Direction",
+    question: "« Pourquoi mon entreprise en a-t-elle besoin ? »",
+    verdict: "Non servi — aucun cas client sectoriel, aucune preuve d'impact malgré le portefeuille existant.",
+    scores: [3, 3, 1, 2, 3]
+  }
+];
+
+let radarChart = null;
+function drawRadar(idx) {
+  const ctx = document.getElementById("radar-canvas");
+  if (!ctx) return;
+  const p = personasData[idx];
+  const dims = ["Confiance institutionnelle","Clarté du vocabulaire","Communication des bénéfices","Parcours d'achat","Information financement"];
+  if (radarChart) radarChart.destroy();
+  radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: dims,
+      datasets: [{
+        label: p.name,
+        data: p.scores,
+        backgroundColor: 'rgba(230, 25, 45, 0.15)',
+        borderColor: '#E6192D',
+        borderWidth: 2,
+        pointBackgroundColor: '#003A70',
+        pointBorderColor: '#fff',
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          beginAtZero: true, max: 10,
+          ticks: { display: false, stepSize: 2 },
+          grid: { color: '#dadfe5' },
+          angleLines: { color: '#dadfe5' },
+          pointLabels: {
+            font: { family: 'Barlow', size: 12, weight: '600' },
+            color: '#1a2332'
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+  document.getElementById("radar-question").textContent = p.question;
+  document.getElementById("radar-verdict").textContent = p.verdict;
+}
+
+function setupPersonaSwitch() {
+  const sw = document.getElementById("persona-switch");
+  if (!sw) return;
+  sw.querySelectorAll(".persona-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sw.querySelectorAll(".persona-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      drawRadar(parseInt(btn.dataset.p));
+    });
+  });
+}
+
+// ============================================
+//   PLAN D'AMÉLIORATION — slide 16
+// ============================================
+const actionsByPrio = {
+  1: [
+    { icon: "01", title: "Navigation par persona", body: "Orienter le visiteur dès l'entrée du site vers un contenu adapté à son schéma mental — Métrologue, RH, Direction. Diminue le temps de traitement et augmente la probabilité de conversion.", src: "Sweller et al. (1998) — Cognitive Load Theory · Forrester (2024) : une interface bien conçue augmente la conversion jusqu'à 250 %." },
+    { icon: "02", title: "Hero du site en plain language (règle des 5 sec)", body: "Réécrire la promesse en proposition de valeur immédiatement identifiable en moins de cinq secondes. La page d'accueil ne satisfait pas cette condition aujourd'hui.", src: "Redish (2012), Letting Go of the Words · Simon (1956), satisficing · Nielsen (2008) — 79 % des internautes scannent sans lire." }
+  ],
+  2: [
+    { icon: "03", title: "Affichage du financement (CPF / OPCO / Qualiopi)", body: "Rendre visible en haut de fiche, avant tout formulaire de contact. 87 % des acheteurs B2B veulent de l'information self-service.", src: "Forrester / B2B UX Benchmark (2024-25) — 61 % des acheteurs ne veulent pas contacter un commercial pour la recherche initiale." },
+    { icon: "04", title: "Lexique technique inline (tooltip)", body: "Concilier deux exigences contradictoires : maintenir la profondeur pour l'expert tout en rendant le contenu accessible aux non-experts.", src: "Cialdini (1984) — principe d'autorité · NN/g (2019) — Plain Language Is for Everyone, Even Experts." }
+  ],
+  3: [
+    { icon: "05", title: "3 cas clients sectoriels (santé / industrie / agro)", body: "Documenter trois parcours clients par secteur. Activer la preuve sociale dormante du portefeuille existant.", src: "Cialdini (1984) — preuve sociale · Edelman (2023) B2B Thought Leadership Impact Study — 60 % des décideurs ont choisi un prestataire qu'ils n'avaient pas envisagé initialement grâce à un contenu de qualité." },
+    { icon: "06", title: "Grille de niveaux par parcours", body: "Débutant / Intermédiaire / Expert sur chaque domaine. Rend la trajectoire visible et l'objectif atteignable — renforce la motivation d'apprentissage.", src: "Deci & Ryan (1985) — théorie de l'auto-détermination." }
+  ]
+};
+
+function renderActions(prio) {
+  const list = document.getElementById("action-list");
+  if (!list) return;
+  list.innerHTML = "";
+  actionsByPrio[prio].forEach((a, idx) => {
+    const el = document.createElement("div");
+    el.className = "action-item";
+    el.innerHTML = `
+      <div class="icon">${a.icon}</div>
+      <div>
+        <h4>${a.title}</h4>
+        <p>${a.body}</p>
+        <span class="src">${a.src}</span>
+      </div>`;
+    list.appendChild(el);
+    setTimeout(() => el.classList.add("visible"), 30 + idx * 90);
+  });
+}
+
+function setupPrioSwitch() {
+  const sw = document.getElementById("prio-switch");
+  if (!sw) return;
+  sw.querySelectorAll(".prio-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sw.querySelectorAll(".prio-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderActions(parseInt(btn.dataset.prio));
+    });
+  });
+}
+
+// ============================================
+//   LEVERS FILTER — slide 20
+// ============================================
+function setupLeverFilter() {
+  const filt = document.getElementById("lever-filter");
+  if (!filt) return;
+  filt.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      filt.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const target = btn.dataset.target;
+      document.querySelectorAll(".levers-grid .lever").forEach(lev => {
+        const tags = lev.dataset.tags.split(",");
+        if (target === "all" || tags.includes(target)) {
+          lev.classList.remove("dim");
+        } else {
+          lev.classList.add("dim");
+        }
+      });
+    });
+  });
+}
+
+// ============================================
+//   STATE HOOKS — render visualisations on slide enter
+// ============================================
+deck.on('slidechanged', e => {
+  const state = e.currentSlide.dataset.state;
+  if (state === "wordcloud-state") drawWordCloud();
+  if (state === "heatmap-state") drawHeatmap();
+  if (state === "personas-state") drawRadar(0);
+  if (state === "actions-state") renderActions(1);
+});
+
+// init UI bits once
+setupPersonaSwitch();
+setupPrioSwitch();
+setupLeverFilter();
+
+// First slide on load: draw if needed
+window.addEventListener("load", () => {
+  const cur = document.querySelector(".reveal .slides section.present");
+  if (cur && cur.dataset.state === "wordcloud-state") drawWordCloud();
+  if (cur && cur.dataset.state === "heatmap-state") drawHeatmap();
+  if (cur && cur.dataset.state === "personas-state") drawRadar(0);
+  if (cur && cur.dataset.state === "actions-state") renderActions(1);
+});
+
+// Persona button: keep active state aligned
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".persona-btn").forEach((b,i) => {
+    if (i===0) b.classList.add("active");
+  });
+});
+</script>
+
+</body>
+</html>
